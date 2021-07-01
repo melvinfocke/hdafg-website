@@ -13,6 +13,11 @@ const registrationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    remarks: {
+        type: String,
+        required: true,
+        default: 'undefined'
+    },
     dateAsString: {
         type: String,
         required: true,

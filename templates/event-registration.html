@@ -3,7 +3,7 @@
         <meta charset="utf-8" />
         <title>h.d.a.fg - Anmelden</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!--<link rel="shortcut icon" type="image/png" href="/favicon.png" />-->
+        <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     </head>
     <body>
         <header>
@@ -18,6 +18,15 @@
                     <input type="text" name="surname" id="surname" required />
                     <label for="phone">Telefonnummer</label>
                     <input type="tel" name="phone" id="phone" required />
+                    <label for="remarks">Bemerkungen</label>
+                    <textarea
+                        name="remarks"
+                        id="remarks"
+                        cols="40"
+                        rows="5"
+                        maxlength="200"
+                        placeholder="Z.B.: Ich möchte im h.d.a.fg übernachten..."
+                    ></textarea>
                     <button type="submit" name="submit">Anmeldung senden</button>
                 </form>
             </div>

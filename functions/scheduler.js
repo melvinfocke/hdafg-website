@@ -2,9 +2,7 @@ const schedule = require('node-schedule');
 const Event = require('../models/event');
 
 function scheduler() {
-    console.log('start');
-    const job = schedule.scheduleJob('0 0 * * * *' /* EACH DAY AT 12:00 AM */, async () => {
-        console.log('Hey ' + new Date());
+    schedule.scheduleJob('0 0 0 * * *' /* EACH DAY AT 12:00 AM */, async () => {
         const eventArray = await Event.find({ isVisible: true });
         const dateNow = new Date().getTime();
 

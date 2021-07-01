@@ -24,24 +24,19 @@ router.get('/redirect', (req, res) => {
         `
 <html lang="en">
     <head>
-        <title>VARO - Redirect</title>
+        <title>h.d.a.fg - Redirect</title>
         <style>
             :root {
-                --background-color: #f4f6f8;
-                --font-color: #5a5a5a;
-            }
-            @media (prefers-color-scheme: dark) {
-                :root {
-                    --background-color: #0f0f0f;
-                    --font-color: #c4c4c4;
-                }
+                --background-very-dark-blue: #031b43;
+                --background-black: #000000;
+                --text-light-gray: #f1f1f1;
             }
             * {
-                font-family: Helvetica;
+                font-family: Helvetica, Arial, sans-serif;
             }
             body {
-                background-color: var(--background-color);
-                color: var(--font-color);
+                background-image: linear-gradient(var(--background-very-dark-blue), var(--background-black));
+                color: var(--text-light-gray);
             }
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

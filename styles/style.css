@@ -1,0 +1,210 @@
+:root {
+    --background-dark-blue: #032966;
+    --background-black: #000000;
+    --background-light-gray: rgba(255, 255, 255, 0.25);
+    --background-dark-gray: rgba(22, 22, 22, 0.5);
+    --accent-neon-pink: #fc2177 /*#aa60d3*/;
+    --nav-bar: rgba(252, 33, 119, 0.9);
+    --text-light-gray: #f1f1f1;
+    --text-dark-gray: #2c2c2c;
+}
+
+* {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#content-container {
+    display: block;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(var(--background-dark-blue), var(--background-black));
+}
+
+/* logo and nav bar */
+header {
+    height: 42px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--nav-bar);
+}
+
+nav {
+    display: flex;
+    /*flex-wrap: wrap;*/
+}
+
+nav > .nav-item {
+    flex: unset;
+    margin: 13px 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+nav a {
+    color: var(--text-light-gray);
+    text-decoration: underline solid transparent;
+    transition: 0.3s;
+}
+nav a:hover {
+    color: var(--text-dark-gray);
+    text-decoration-color: var(--background-dark-gray);
+}
+
+main a {
+    text-decoration: none;
+    color: var(--text-light-gray);
+}
+
+.logo-big {
+    height: 42px;
+    width: 105px;
+}
+
+nav .nav-image {
+    display: none;
+}
+
+.welcome-img {
+    width: 100%;
+    height: 82vh;
+    background-image: url('/welcome-img.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@media only screen and (min-width: 450px) {
+    nav > .nav-item {
+        margin: 13px 13px;
+    }
+    nav .nav-image {
+        display: flex;
+    }
+}
+
+/* Main section */
+main {
+    display: grid;
+    grid-template-columns: minmax(8px, auto) minmax(150px, 1140px) minmax(8px, auto);
+}
+
+.inner-content {
+    /*margin: 22px 150px 22px 150px;*/
+    display: grid;
+    grid-template-columns: minmax(30px, auto) minmax(130px, 840px) minmax(30px, auto);
+}
+
+h2 {
+    color: var(--text-light-gray);
+    font-size: 30px;
+    text-align: center;
+    margin: 0 0 30px 0;
+}
+
+h3 {
+    color: var(--text-light-gray);
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+    padding: 50px 0 0 0;
+}
+
+p {
+    color: var(--text-light-gray);
+    font-size: 17px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* Event div */
+.events-container {
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 25%;
+    justify-content: center;
+    gap: 40px;
+}
+
+.event-div {
+    box-shadow: 0 0 30px var(--background-dark-gray);
+    width: 256px;
+    height: 441px;
+    background-color: var(--background-light-gray);
+    padding-bottom: 14px;
+}
+
+.event-div img {
+    width: 100%;
+    height: 144px;
+}
+
+.event-div h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-light-gray);
+    text-align: center;
+    margin: 20px 20px 0 20px;
+}
+
+.event-div p {
+    line-height: 1.4;
+    text-align: left;
+    margin: 20px 20px 0 20px;
+    height: 180px;
+}
+
+.event-div a {
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 20px;
+    padding: 8px 16px 8px 16px;
+    border-style: solid;
+    border-width: 3px;
+    transition: 0.3s;
+}
+
+.event-div a:hover {
+    margin: -2px 16px;
+    padding: 10px 20px 10px 20px;
+    color: var(--text-dark-gray);
+    border-color: var(--text-light-gray);
+    background-color: var(--text-light-gray);
+}
+
+/* Footer */
+footer {
+    padding: 20px 0 30px 0;
+    color: var(--text-dark-gray);
+    text-align: center;
+}
+
+.link {
+    text-decoration: underline dotted var(--accent-neon-pink);
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: var(--accent-neon-pink);
+}
+
+/* Seperator */
+.seperator {
+    display: grid;
+    grid-template-columns: minmax(80px, auto) minmax(5px, 100%) minmax(80px, auto);
+}
+
+.seperator hr {
+    margin-top: 40px;
+    border: 1px solid var(--accent-neon-pink);
+}

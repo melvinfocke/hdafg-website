@@ -22,26 +22,27 @@ router.get(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
         if (a.date > b.date) return -1;
     });
 
-    out0 += `<tr class="hoverable" id="newRow" style="display: none;"><td class="id"><span>xxxxxxxxxxxxxxxxxxxxxxxx</span></td><td class="spacer"></td><td class="givenname editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="surname editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="phone editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="date editable" contenteditable="true"><span></span></td><td class="editButton editButtonApply" onclick="addbutton('A');"><span>A</span></td><td class="deleteButton" onclick="addbutton('X');"><span>X</span></td></tr>`;
+    out0 += `<tr class="hoverable" id="newRow" style="display: none;"><td class="id"><span>xxxxxxxxxxxxxxxxxxxxxxxx</span></td><td class="spacer"></td><td class="givenname editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="surname editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="phone editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="remarks editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="date editable" contenteditable="true"><span></span></td><td class="editButton editButtonApply" onclick="addbutton('A');"><span>A</span></td><td class="deleteButton" onclick="addbutton('X');"><span>X</span></td></tr>`;
 
     registrationArray.forEach((registration) => {
-        out0 += `<tr class="hoverable" id="${registration._id}"><td class="id"><span>${registration._id}</span></td><td class="spacer"></td><td class="givenname"><span>${registration.givenName}</span></td><td class="spacer"></td><td class="surname"><span>${registration.surName}</span></td><td class="spacer"></td><td class="phone"><span>${registration.phone}</span></td><td class="spacer"></td><td class="date"><span>${registration.dateAsString}</span></td><td class="editButton" onclick="editbutton('${registration._id}');"><span>E</span></td><td class="deleteButton" onclick="deletebutton('${registration._id}');"><span>X</span></td></tr>`;
+        out0 += `<tr class="hoverable" id="${registration._id}"><td class="id"><span>${registration._id}</span></td><td class="spacer"></td><td class="givenname"><span>${registration.givenName}</span></td><td class="spacer"></td><td class="surname"><span>${registration.surName}</span></td><td class="spacer"></td><td class="phone"><span>${registration.phone}</span></td><td class="spacer"></td><td class="remarks"><span>${registration.remarks}</span></td><td class="spacer"></td><td class="date"><span>${registration.dateAsString}</span></td><td class="editButton" onclick="editbutton('${registration._id}');"><span>E</span></td><td class="deleteButton" onclick="deletebutton('${registration._id}');"><span>X</span></td></tr>`;
     });
 
-    out = `<table><thead><tr><td class="id">ID</td><td class="spacer"></td><td class="givenname">GivenName</td><td class="spacer"></td><td class="surname">SurName</td><td class="spacer"></td><td class="phone">PhoneNumber</td><td class="spacer"></td><td class="date">Date</td><td class="addButton" onclick="addbutton();" width="42.98px"><span>Add</span></td></tr></thead><tbody>${out0}</tbody></table>`;
+    out = `<table><thead><tr><td class="id">ID</td><td class="spacer"></td><td class="givenname">GivenName</td><td class="spacer"></td><td class="surname">SurName</td><td class="spacer"></td><td class="phone">PhoneNumber</td><td class="spacer"></td><td class="remarks">Remarks</td><td class="spacer"></td><td class="date">Date</td><td class="addButton" onclick="addbutton();" width="42.98px"><span>Add</span></td></tr></thead><tbody>${out0}</tbody></table>`;
 
     sendContentAsPage(FILE_NAME, out, res, true, 'admin');
 });
 
 // Create new registration entry
 router.post(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
-    let { givenName, surName, phone, dateAsString } = req.body;
+    let { givenName, surName, phone, remarks, dateAsString } = req.body;
     dateAsString = dateAsString || convertToDateAsString(new Date());
 
     const registration = new Registration({
         givenName: givenName,
         surName: surName,
         phone: phone,
+        remarks: remarks,
         dateAsString: dateAsString,
         date: convertToDate(dateAsString)
     });
@@ -57,16 +58,15 @@ router.post(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
 // Update registration entry
 router.patch(`/${SITE_NAME}/:id`, ensureAuthenticated, getRegistration, async (req, res) => {
     let registration = res.registration;
-    const { givenName, surName, phone, dateAsString } = req.body;
+    const { givenName, surName, phone, remarks, dateAsString } = req.body;
     if (givenName) registration.givenName = givenName;
     if (surName) registration.surName = surName;
     if (phone) registration.phone = phone;
+    if (remarks) registration.remarks = remarks;
     if (dateAsString) {
         registration.dateAsString = dateAsString;
         registration.date = convertToDate(dateAsString);
     }
-
-    console.log(registration);
 
     const updatedRegistration = await registration.save();
     res.json(updatedRegistration);

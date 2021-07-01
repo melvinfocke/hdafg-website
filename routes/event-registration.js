@@ -48,8 +48,9 @@ router.get('/:event/fehlgeschlagen', async (req, res) => {
 });
 
 router.post('/:event', ensureCanRegistrate, async (req, res) => {
-    const { givenname: givenName, surname: surName, phone: phoneNumber } = req.body;
+    let { givenname: givenName, surname: surName, phone: phoneNumber, remarks: remarks } = req.body;
     const paramEvent = req.params.event;
+    remarks = remarks?.replace(/\s/g, '') !== '' ? remarks : null;
 
     const event = await Event.findById(paramEvent);
     if (!event) return res.status(404).send('Could not find event entry');
@@ -59,6 +60,7 @@ router.post('/:event', ensureCanRegistrate, async (req, res) => {
         givenName: givenName,
         surName: surName,
         phone: phoneNumber,
+        remarks: remarks || 'undefined',
         dateAsString: convertToDateAsString(dateNow),
         date: dateNow.getTime()
     });
@@ -71,6 +73,8 @@ router.post('/:event', ensureCanRegistrate, async (req, res) => {
     }
 
     const dateAndTimeAsStringObj = registration.dateAsString.split(' ');
+    const remarksString =
+        registration.remarks == 'undefined' ? '' : ' <br><br>Bemerkungen: <strong>' + remarks + '</strong>';
 
     const transporter = nodemailer.createTransport({
         host: MAIL_HOST,
@@ -82,21 +86,27 @@ router.post('/:event', ensureCanRegistrate, async (req, res) => {
         }
     });
 
-    let mailOptions = {
-        from: MAIL_USER,
-        to: MAIL_TO,
-        subject: `Neue Anmeldung bei ${DOMAIN}`,
-        html: `Hey Philipp, <br><br>jemand hat sich am <strong>${dateAndTimeAsStringObj[0]}</strong> um <strong>${dateAndTimeAsStringObj[1]} Uhr</strong> für <strong>${event.displayName}</strong> angemeldet. Hier sind seine/ihre Kontaktdaten: <br><br>Name: <strong>${givenName} ${surName}</strong><br>Telefon: <strong>${phoneNumber}</strong> <br><br>Mit freundlichen Grüßen <br><i>h.d.a.fg System</i><br><br><small>Mail ID: ${newRegistration._id}</small>`
-    };
+    let hasFailed = false;
+    MAIL_TO.split(',').forEach((mailToEntry) => {
+        const receiverInfo = mailToEntry.split(':');
 
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-            return res.redirect(`/${paramEvent}/fehlgeschlagen`);
-        }
+        let mailOptions = {
+            from: MAIL_USER,
+            to: receiverInfo[1],
+            subject: `Neue Anmeldung bei ${DOMAIN}`,
+            html: `Hey ${receiverInfo[0]}, <br><br>jemand hat sich am <strong>${dateAndTimeAsStringObj[0]}</strong> um <strong>${dateAndTimeAsStringObj[1]} Uhr</strong> für <strong>${event.displayName}</strong> angemeldet. Hier sind seine/ihre Kontaktdaten: <br><br>Name: <strong>${givenName} ${surName}</strong> <br>Telefon: <strong><a href="tel:${phoneNumber}">${phoneNumber}</a></strong>${remarksString} <br><br>Mit freundlichen Grüßen <br><i>h.d.a.fg System</i><br><br><small>Mail ID: ${newRegistration._id}</small>`
+        };
 
-        res.redirect(`/${paramEvent}/gesendet`);
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.log(err);
+                hasFailed = true;
+            }
+        });
     });
+
+    if (hasFailed == true) return res.redirect(`/${paramEvent}/fehlgeschlagen`);
+    res.redirect(`/${paramEvent}/gesendet`);
 });
 
 module.exports = router;
