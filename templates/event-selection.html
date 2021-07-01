@@ -1,10 +1,11 @@
 <html lang="de">
     <head>
         <meta charset="utf-8" />
-        <title>h.d.a.fg - Events</title>
+        <title>h.d.a.fg</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" type="image/png" href="/favicon.png" />
         <link rel="stylesheet" href="/style.css" />
+        <script src="/script.js" defer></script>
         <!-- prettier-ignore -->
         <script> </script>
     </head>
@@ -127,6 +128,7 @@
                         <h3 id="kontakt">Kontakt</h3>
                         <h2>Social Media & E-Mail</h2>
                         <p>
+                            <button id="novalja-nightbeat-btn"></button>
                             Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er
                             Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm
                             große Freude.
@@ -147,6 +149,49 @@
                 </div>
             </div>
             <div class="spacer-lr"></div>
+            <div id="novalja-nightbeat" class="modal">
+                <div class="modal-content">
+                    <div class="modal-content-img">
+                        <image src="/novalja-nightbeat.png" alt="Novalja NIGHTBEAT Picture" />
+                    </div>
+                    <div class="modal-content-right">
+                        <span class="close" id="novalja-nightbeat-close">&times</span>
+                        <div class="text">
+                            <h2>Novalja NIGHTBEAT</h2>
+                            <p>
+                                <strong>Novalja NIGHTBEAT</strong> findet am <strong>17.07.2021</strong> statt. Wenn du
+                                dich mit dem Formular anmeldest, erhälst du innerhalb von 24 Stunden eine
+                                Bestätigungswhatsapp. Die endgültige Zusage und Daten wie Uhrzeit, Adresse und was
+                                mitgebracht werden soll findest du dann in der WhatsApp-Nachricht.
+                            </p>
+                        </div>
+                        <div class="form-container">
+                            <form class="form" id="form" method="post">
+                                <div class="form-container-left">
+                                    <label for="givenname">Vorname:</label>
+                                    <input type="text" name="givenname" id="givenname" required />
+                                    <label for="surname">Nachname:</label>
+                                    <input type="text" name="surname" id="surname" required />
+                                    <label for="phone">Telefonnummer:</label>
+                                    <input type="tel" name="phone" id="phone" required />
+                                </div>
+                                <div class="form-container-right">
+                                    <label for="remarks">Bemerkungen:</label>
+                                    <textarea
+                                        name="remarks"
+                                        id="remarks"
+                                        cols="40"
+                                        rows="5"
+                                        maxlength="200"
+                                        placeholder="Bsp.: Ich möchte im h.d.a.fg übernachten..."
+                                    ></textarea>
+                                    <button type="submit" name="submit">Anmeldung senden</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer>Copyright 2021 - Hosted by Melvin Focke</footer>
     </body>
