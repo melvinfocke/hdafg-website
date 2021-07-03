@@ -1,10 +1,15 @@
 const express = require('express');
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, { cors: { origin: '*' } });
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { DATABASE } = require('./config');
 const { send404Page } = require('./functions/error404');
 const scheduler = require('./functions/scheduler');
+require('./externalsocketio')(io);
+
+//
 
 mongoose.connect(DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -39,11 +44,11 @@ app.use('/', require('./routes/admin-admin-login-log'));
 app.use('/', require('./routes/admin-admins'));
 
 app.use('/', require('./routes/redirects'));
-app.use('/', require('./routes/event-selection'));
+app.use('/', require('./routes/index'));
 
 app.use('/', require('./routes/event-registration'));
 app.get('*', (req, res) => send404Page(res));
 
 scheduler();
 
-app.listen(8080, () => console.log('Listening on port 8080'));
+server.listen(8080, () => console.log('Listening on port 8080'));

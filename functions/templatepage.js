@@ -2,7 +2,7 @@ const { ROOT_DIRECTORY } = require('../config');
 const { send404Page } = require('./error404');
 const fs = require('fs');
 
-function sendContentAsPage(siteName, content, res, loadScript = false, templateName) {
+function sendContentAsPage(siteName, content, res, loadScript = false, templateName, alertObj = null) {
     fs.readFile(`${ROOT_DIRECTORY}/templates/${templateName}.html`, (err, data) => {
         if (err) return send404Page(res);
         let templatePageAsString = data.toLocaleString();
@@ -17,6 +17,29 @@ function sendContentAsPage(siteName, content, res, loadScript = false, templateN
                 ''
             );
         }
+        if (templateName == 'index' && alertObj !== null) {
+            templatePageAsString = templatePageAsString.replace(
+                '<div id="alert" class="modal" style="display: none">',
+                '<div id="alert" class="modal" style="display: block">'
+            );
+            templatePageAsString = templatePageAsString.replace(
+                '<link rel="stylesheet" href="/style.css" />',
+                '<link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/style-modal-open.css" />'
+            );
+            templatePageAsString = templatePageAsString.replace(
+                '<image id="alert-img" src="" alt="" />',
+                `<image id="alert-img" src="${alertObj.img}" alt="${alertObj.img}" />`
+            );
+            templatePageAsString = templatePageAsString.replace(
+                '<h2 id="alert-hl"></h2>',
+                `<h2 id="alert-hl">${alertObj.hl}</h2>`
+            );
+            templatePageAsString = templatePageAsString.replace(
+                '<p id="alert-p"></p>',
+                `<p id="alert-p">${alertObj.p}</p>`
+            );
+        }
+
         res.send(templatePageAsString);
     });
 }

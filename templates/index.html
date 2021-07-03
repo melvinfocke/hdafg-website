@@ -1,0 +1,234 @@
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <title>h.d.a.fg</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+        <link rel="stylesheet" href="/style.css" />
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/script.js" defer></script>
+        <!-- prettier-ignore -->
+        <script> </script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-image">
+                    <a href="#">
+                        <image src="/logo1.png" alt="h.d.a.fg Logo" class="logo-big" />
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#">Startseite</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#hdafg">h.d.a.fg?</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#events">Events</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#kontakt">Kontakt</a>
+                </div>
+            </nav>
+        </header>
+        <div class="welcome-img"></div>
+        <main>
+            <div class="spacer-lr"></div>
+            <div id="content-container">
+                <div class="inner-content">
+                    <div class="spacer-lr"></div>
+                    <div>
+                        <h3 id="hdafg">h.d.a.fg?</h3>
+                        <h2>Hauptquartier der abstrakten Freizeitgestaltung</h2>
+                        <p>
+                            Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er
+                            Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm
+                            große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht
+                            sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer
+                            hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu
+                            genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher
+                            keine daraus resultierende Freude nach sich zieht? Auch gibt es niemanden, der den Schmerz
+                            an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu
+                            zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein
+                            triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher
+                            Betätigung.
+                        </p>
+                    </div>
+                    <div class="spacer-lr"></div>
+                </div>
+                <div class="seperator">
+                    <div class="spacer-lr"></div>
+                    <div>
+                        <hr />
+                    </div>
+                    <div class="spacer-lr"></div>
+                </div>
+                <div class="inner-content">
+                    <div class="spacer-lr"></div>
+                    <div>
+                        <h3 id="events">Events</h3>
+                        <h2>Alle anstehenden Events</h2>
+                        <p>
+                            Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er
+                            Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm
+                            große Freude.
+                        </p>
+                    </div>
+                    <div class="spacer-lr"></div>
+                </div>
+                <div class="events-container">
+                    <!--<div class="event-div">
+                        <image src="/event1-img.png" alt="Novalja NIGHTBEAT photo"></image>
+                        <h4>Novalja NIGHTBEAT</h4>
+                        <p>
+                            Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?Auch gibt es
+                            niemanden, der den Schmerz an sich liebt
+                        </p>
+                        <a href="/novalja-nightbeat">Jetzt anmelden</a>
+                    </div>
+                    <div class="event-div">
+                        <image src="/event1-img.png" alt="Novalja NIGHTBEAT photo"></image>
+                        <h4>Novalja NIGHTBEAT</h4>
+                        <p>Schmerz vermeidet</p>
+                        <a href="/novalja-nightbeat">Jetzt anmelden</a>
+                    </div>
+                    <div class="event-div">
+                        <image src="/event1-img.png" alt="Novalja NIGHTBEAT photo"></image>
+                        <h4>Novalja NIGHTBEAT</h4>
+                        <p>Schmerz vermeidet, welcher keine daraus resultierende</p>
+                        <a href="/novalja-nightbeat">Jetzt anmelden</a>
+                    </div>
+                    <div class="event-div">
+                        <image src="/event1-img.png" alt="Novalja NIGHTBEAT photo"></image>
+                        <h4>Novalja NIGHTBEAT</h4>
+                        <p>
+                            Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?Auch gibt es
+                            niemanden
+                        </p>
+                        <a href="/novalja-nightbeat">Jetzt anmelden</a>
+                    </div>
+                    <div class="event-div">
+                        <image src="/event1-img.png" alt="Novalja NIGHTBEAT photo"></image>
+                        <h4>Novalja NIGHTBEAT</h4>
+                        <p>Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?</p>
+                        <a href="/novalja-nightbeat">Jetzt anmelden</a>
+                    </div>-->
+                    {CONTENT}
+                </div>
+                <div class="seperator">
+                    <div class="spacer-lr"></div>
+                    <div>
+                        <hr />
+                    </div>
+                    <div class="spacer-lr"></div>
+                </div>
+                <div class="inner-content">
+                    <div class="spacer-lr"></div>
+                    <div>
+                        <h3 id="kontakt">Kontakt</h3>
+                        <h2>Social Media & E-Mail</h2>
+                        <p>
+                            Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er
+                            Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm
+                            große Freude.
+                        </p>
+                        <p>
+                            Instagram:
+                            <a
+                                class="link"
+                                href="https://www.instagram.com/h.d.a.fg"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >@h.d.a.fg</a
+                            ><br />
+                            E-Mail: <a class="link" href="mailto:info.hdafg@gmail.com">info.hdafg@gmail.com</a>
+                        </p>
+                    </div>
+                    <div class="spacer-lr"></div>
+                </div>
+            </div>
+            <div class="spacer-lr"></div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <div id="modal-content-img" class="modal-content-img">
+                        <!--<image id="modal-img" src="/novalja-nightbeat.png" alt="Novalja NIGHTBEAT Picture" />-->
+                    </div>
+                    <div class="modal-content-right">
+                        <span class="close" id="modal-close">&times</span>
+                        <div class="text">
+                            <h2 id="modal-h1-displayname">Novalja NIGHTBEAT</h2>
+                            <p id="modal-p">
+                                <strong><span id="modal-span-displayname">Novalja NIGHTBEAT</span></strong> findet am
+                                <strong><span id="modal-span-date">17.07.2021</span></strong
+                                ><span id="modal-span-time"></span> statt. Wenn du dich mit dem Formular anmeldest,
+                                erhälst du innerhalb von 24 Stunden eine Bestätigungsnachricht bei WhatsApp. Die
+                                endgültige Zusage und Daten wie <span id="modal-span-uhrzeit">Uhrzeit, </span>Adresse
+                                und was mitgebracht werden soll findest du dann in der WhatsApp-Nachricht.
+                            </p>
+                        </div>
+                        <div class="form-container">
+                            <div class="form" id="form">
+                                <div id="form-container-left" class="form-container-left">
+                                    <label for="givenname">Vorname: <span class="required">*</span></label>
+                                    <input type="text" name="givenname" id="givenname" maxlength="26" />
+                                    <label for="surname">Nachname: <span class="required">*</span></label>
+                                    <input type="text" name="surname" id="surname" maxlength="26" />
+                                    <label for="phone">Telefonnummer: <span class="required">*</span></label>
+                                    <input type="tel" name="phone" id="phone" maxlength="24" />
+                                    <input type="hidden" name="eventid" id="eventid" value="none" />
+                                </div>
+                                <div id="form-container-right" class="form-container-right">
+                                    <label for="remarks">Bemerkungen:</label>
+                                    <textarea
+                                        name="remarks"
+                                        id="remarks"
+                                        cols="40"
+                                        rows="5"
+                                        maxlength="200"
+                                        placeholder="Bsp.: Ich möchte im h.d.a.fg übernachten..."
+                                    ></textarea>
+                                    <button id="submit" name="submit">Anmeldung senden</button>
+                                </div>
+                                <div id="text-container" class="text-container">
+                                    <div id="text-container-left" class="text-container-left">
+                                        <p>
+                                            Erste Einblicke findest du jetzt schon auf Instagram:
+                                            <a
+                                                class="link"
+                                                href="https://www.instagram.com/h.d.a.fg"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                >@h.d.a.fg</a
+                                            >
+                                        </p>
+                                        <p>Du kannst dieses Fenster jetzt schließen.</p>
+                                        <button id="close-btn" class="button-close">Fenster schließen</button>
+                                    </div>
+                                    <div id="text-container-right" class="text-container-right">
+                                        <img src="/checkbox-pink.png" alt="Pink Checkbox" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="alert" class="modal" style="display: none">
+                <div class="modal-content">
+                    <div class="modal-content-img">
+                        <image id="alert-img" src="" alt="" />
+                    </div>
+                    <div class="modal-content-right">
+                        <span class="close" id="alert-close">&times</span>
+                        <div class="text">
+                            <h2 id="alert-hl"></h2>
+                            <p id="alert-p"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>Copyright 2021 - Hosted by Melvin Focke</footer>
+    </body>
+</html>

@@ -59,13 +59,13 @@ async function createDefaultAdminAccountIfNotExists() {
     await admin.save();
 }
 
-async function ensureCanRegistrate(req, res, next) {
+async function ensureCanRegistrate(ip) {
     const dateNow = new Date();
-    let registrationLog = await RegistrationLog.findById(req.ip);
+    let registrationLog = await RegistrationLog.findById(ip);
 
     if (!registrationLog) {
         registrationLog = new RegistrationLog({
-            _id: req.ip,
+            _id: ip,
             lastRegistration: -1,
             amountOfRegistrations: 0
         });
@@ -75,25 +75,26 @@ async function ensureCanRegistrate(req, res, next) {
     if (registrationLog.amountOfRegistrations > MAX_REGISTRATIONS_PER_DAY) {
         await registrationLog.save();
 
-        console.log(registrationLog);
+        //console.log(registrationLog);
 
-        return autoRedirect(res, {
+        /*return autoRedirect(res, {
             time: 10,
             responseCode: 429,
             message: `Too many registration attempts. You can only make up to ${MAX_REGISTRATIONS_PER_DAY} registrations per day per ip address. You will be redirected to the event registration page in 10 seconds.`,
             url: `/${req.params.event}`
-        });
+        });*/
+        return false;
     }
 
     registrationLog.amountOfRegistrations++;
     registrationLog.lastRegistrationAsString = convertToDateAsString(dateNow);
     registrationLog.lastRegistration = dateNow.getTime();
 
-    console.log(registrationLog);
+    //console.log(registrationLog);
 
     await registrationLog.save();
 
-    next();
+    return true;
 }
 
 module.exports = { ensureAuthenticated, createDefaultAdminAccountIfNotExists, ensureCanRegistrate };
