@@ -15,10 +15,17 @@ function sendFile(res, file) {
             if (err) return send404Page(res);
             return res.status(200).sendFile(`${ROOT_DIRECTORY}/scripts/${file}`);
         });
-    } else if (file.endsWith('.png')) {
-        fs.readFile(`${ROOT_DIRECTORY}/images/${file}`, (err, data) => {
-            if (err) return send404Page(res);
-            return res.status(200).sendFile(`${ROOT_DIRECTORY}/images/${file}`);
+    } else if (file.endsWith('.webp') || file.endsWith('.png')) {
+        fs.readFile(`${ROOT_DIRECTORY}/uploads/${file}`, (err, data) => {
+            if (err) {
+                fs.readFile(`${ROOT_DIRECTORY}/images/${file}`, (err2, data2) => {
+                    if (err2) return send404Page(res);
+
+                    return res.status(200).sendFile(`${ROOT_DIRECTORY}/images/${file}`);
+                });
+            } else {
+                return res.status(200).sendFile(`${ROOT_DIRECTORY}/uploads/${file}`);
+            }
         });
     } else {
         send404Page(res);

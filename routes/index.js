@@ -54,22 +54,38 @@ router.get('/', async (req, res) => {
                     <button onclick="showModal('${event._id}', '${event.displayName}', '${dateString}', '${timeString}')">Jetzt anmelden</button>
                 </div>`;
         internalCss += `
-#${event._id}-photo-1 {
+.no-webp #${event._id}-photo-1 {
     background-image: url('/${event._id}-512-288.png');
     background-image: -webkit-image-set(
         url('/${event._id}-256-144.png') 1x,
         url('/${event._id}-512-288.png') 2x
     );
-    background-image: image-set('/${event._id}-256-144.png.png' 1x, '/${event._id}-512-288.png' 2x);
+    background-image: image-set('/${event._id}-256-144.png' 1x, '/${event._id}-512-288.png' 2x);
+}
+.webp #${event._id}-photo-1 {
+    background-image: url('/${event._id}-512-288.webp');
+    background-image: -webkit-image-set(
+        url('/${event._id}-256-144.webp') 1x,
+        url('/${event._id}-512-288.webp') 2x
+    );
+    background-image: image-set('/${event._id}-256-144.webp' 1x, '/${event._id}-512-288.webp' 2x);
 }
 @media only screen and (min-width: 563px) {
-    #${event._id}-photo-2 {
+    .no-webp #${event._id}-photo-2 {
         background-image: url('/${event._id}-512-288.png');
         background-image: -webkit-image-set(
             url('/${event._id}-400-525.png') 1x,
             url('/${event._id}-800-1050.png') 2x
         );
         background-image: image-set('/${event._id}-400-525.png' 1x, '/${event._id}-800-1050.png' 2x);
+    }
+    .webp #${event._id}-photo-2 {
+        background-image: url('/${event._id}-512-288.webp');
+        background-image: -webkit-image-set(
+            url('/${event._id}-400-525.webp') 1x,
+            url('/${event._id}-800-1050.webp') 2x
+        );
+        background-image: image-set('/${event._id}-400-525.webp' 1x, '/${event._id}-800-1050.webp' 2x);
     }
 }`;
     });

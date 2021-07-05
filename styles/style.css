@@ -67,9 +67,13 @@ nav a {
     color: var(--text-light-gray);
     text-decoration: underline solid transparent;
     transition: 0.3s;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 nav a:hover {
     color: var(--text-dark-gray);
@@ -79,9 +83,23 @@ nav a:hover {
 main a {
     text-decoration: none;
     color: var(--text-light-gray);
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .logo-navbar {
@@ -90,9 +108,18 @@ main a {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.no-webp .logo-navbar {
     background-image: url('/logo-276-84.png');
     background-image: -webkit-image-set(url('/logo-138-42.png') 1x, url('/logo-276-84.png') 2x);
     background-image: image-set('/logo-138-42.png' 1x, '/logo-276-84.png' 2x);
+}
+
+.webp .logo-navbar {
+    background-image: url('/logo-276-84.webp');
+    background-image: -webkit-image-set(url('/logo-138-42.webp') 1x, url('/logo-276-84.webp') 2x);
+    background-image: image-set('/logo-138-42.webp' 1x, '/logo-276-84.webp' 2x);
 }
 
 nav .nav-item-start {
@@ -103,39 +130,61 @@ nav .nav-item-start {
     z-index: 1;
     width: 100%;
     height: 82vh;
-    background-image: url('/welcome-img-563-563.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
+.no-webp .welcome-img {
+    background-image: url('/welcome-img-563-563.png');
+}
+
+.webp .welcome-img {
+    background-image: url('/welcome-img-563-563.webp');
+}
+
 @media only screen and (min-width: 563px) {
-    .welcome-img {
+    .no-webp .welcome-img {
         background-image: url('/welcome-img-960-960.png');
+    }
+    .webp .welcome-img {
+        background-image: url('/welcome-img-960-960.webp');
     }
 }
 
 @media only screen and (min-width: 960px) {
-    .welcome-img {
+    .no-webp .welcome-img {
         background-image: url('/welcome-img-1400-1400.png');
+    }
+    .webp .welcome-img {
+        background-image: url('/welcome-img-1400-1400.webp');
     }
 }
 
 @media only screen and (min-width: 1400px) {
-    .welcome-img {
+    .no-webp .welcome-img {
         background-image: url('/welcome-img-1950-1950.png');
+    }
+    .webp .welcome-img {
+        background-image: url('/welcome-img-1950-1950.webp');
     }
 }
 
 @media only screen and (min-width: 1950px) {
-    .welcome-img {
+    .no-webp .welcome-img {
         background-image: url('/welcome-img-2600-2600.png');
+    }
+    .webp .welcome-img {
+        background-image: url('/welcome-img-2600-2600.webp');
     }
 }
 
 @media only screen and (min-width: 2600px) {
-    .welcome-img {
+    .no-webp .welcome-img {
         background-image: url('/welcome-img-3024-3024.png');
+    }
+    .webp .welcome-img {
+        background-image: url('/welcome-img-3024-3024.webp');
     }
 }
 
@@ -423,9 +472,13 @@ footer {
     color: var(--text-light-gray);
     cursor: pointer;
     transition: 0.2s;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .modal-content .close:hover {
@@ -573,9 +626,20 @@ footer {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+    }
+
+    .no-webp .text-container-right .checkbox-img {
         background-image: url('/checkbox-pink-480-480.png');
         background-image: -webkit-image-set(url('/checkbox-pink-240-240.png') 1x, url('/checkbox-pink-480-480.png') 2x);
         background-image: image-set('/checkbox-pink-240-240.png' 1x, '/checkbox-pink-480-480.png' 2x);
+    }
+    .webp .text-container-right .checkbox-img {
+        background-image: url('/checkbox-pink-480-480.webp');
+        background-image: -webkit-image-set(
+            url('/checkbox-pink-240-240.webp') 1x,
+            url('/checkbox-pink-480-480.webp') 2x
+        );
+        background-image: image-set('/checkbox-pink-240-240.webp' 1x, '/checkbox-pink-480-480.webp' 2x);
     }
 }
 

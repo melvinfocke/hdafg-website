@@ -107,10 +107,5 @@ dist
 *.tar
 
 # Admin file uploads
-images/*
-!images/.gitkeep
-!images/checkbox-pink-*.png
-!images/icon-*.png
-!images/apple-touch-icon-*.png
-!images/logo-*.png
-!images/welcome-img-*.png
+uploads/*
+!uploads/.gitkeep

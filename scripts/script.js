@@ -20,7 +20,7 @@ const eventId = document.getElementById('eventid');
 const remarks = document.getElementById('remarks');
 
 /* Socket.io */
-const socket = io();
+const socket = io(window.location.origin);
 socket.on('connection');
 
 function showModal(id, displayName, date, time) {
@@ -101,10 +101,9 @@ submitBtn.onclick = function () {
         remarks: remarks.value
     });
 
-    span.scrollIntoView();
-
     socket.on('sendFormResult', (data) => {
-        console.log(data.status);
+        span.scrollIntoView();
+
         modalH1DisplayName.innerHTML = `ANMELDUNG ${data.status.toUpperCase()}`;
         formContainerLeft.style.display = 'none';
         formContainerRight.style.display = 'none';
