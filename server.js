@@ -48,7 +48,6 @@ app.use('/', require('./routes/admin-file-explorer'));
 app.use('/', require('./routes/redirects'));
 app.use('/', require('./routes/index'));
 
-app.use('/', require('./routes/event-registration'));
 app.get('*', (req, res) => send404Page(res));
 
 scheduler();
