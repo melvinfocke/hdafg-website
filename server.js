@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { DATABASE } = require('./config');
 const { send404Page } = require('./functions/error404');
+const { sendFile } = require('./functions/sendfile');
 const scheduler = require('./functions/scheduler');
 require('./externalsocketio')(io);
 
@@ -48,6 +49,7 @@ app.use('/', require('./routes/admin-file-explorer'));
 app.use('/', require('./routes/redirects'));
 app.use('/', require('./routes/index'));
 
+app.get('/:file', (req, res) => sendFile(res, req.params.file));
 app.get('*', (req, res) => send404Page(res));
 
 scheduler();

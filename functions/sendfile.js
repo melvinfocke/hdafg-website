@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { ROOT_DIRECTORY } = require('../config');
+const { ROOT_DIRECTORY, UPLOAD_DIRECTORY } = require('../config');
 const { send404Page } = require('../functions/error404');
 
 function sendFile(res, file) {
@@ -16,7 +16,7 @@ function sendFile(res, file) {
             return res.status(200).sendFile(`${ROOT_DIRECTORY}/scripts/${file}`);
         });
     } else if (file.endsWith('.webp') || file.endsWith('.png')) {
-        fs.readFile(`${ROOT_DIRECTORY}/uploads/${file}`, (err, data) => {
+        fs.readFile(`${ROOT_DIRECTORY}/${UPLOAD_DIRECTORY}/${file}`, (err, data) => {
             if (err) {
                 fs.readFile(`${ROOT_DIRECTORY}/images/${file}`, (err2, data2) => {
                     if (err2) return send404Page(res);
@@ -24,7 +24,7 @@ function sendFile(res, file) {
                     return res.status(200).sendFile(`${ROOT_DIRECTORY}/images/${file}`);
                 });
             } else {
-                return res.status(200).sendFile(`${ROOT_DIRECTORY}/uploads/${file}`);
+                return res.status(200).sendFile(`${ROOT_DIRECTORY}/${UPLOAD_DIRECTORY}/${file}`);
             }
         });
     } else {

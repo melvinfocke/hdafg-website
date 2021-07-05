@@ -362,6 +362,28 @@ footer {
     height: auto;
     display: flex;
     box-shadow: 0 0 5px var(--text-light-gray);
+    -webkit-animation-name: animatemodal;
+    -webkit-animation-duration: 0.3s;
+    animation-name: animatemodal;
+    animation-duration: 0.3s;
+}
+
+@-webkit-keyframes animatemodal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes animatemodal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .modal-content .modal-content-img {
