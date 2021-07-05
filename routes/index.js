@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
                     <image src="/${event._id}.png" alt="${event.displayName} Foto"></image>
                     <h4>${event.displayName}</h4>
                     <p>
-                        <strong>${fullDateString}</strong><br>Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?
+                        <strong>${fullDateString}</strong><br>${event.description}
                     </p>
                     <!--<a href="/${event._id}">Jetzt anmelden</a>-->
                     <button onclick="showModal('${event._id}', '${event.displayName}', '${dateString}', '${timeString}')">Jetzt anmelden</button>

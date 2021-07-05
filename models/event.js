@@ -18,6 +18,11 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: true,
+        default: 'undefined'
+    },
     isVisible: {
         type: Boolean,
         required: true,

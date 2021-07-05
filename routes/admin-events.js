@@ -21,20 +21,20 @@ router.get(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
         if (a.date < b.date) return -1;
     });
 
-    out0 += `<tr class="hoverable" id="newRow" style="display: none;"><td class="id editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="displayname editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="date editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="isvisible editable" contenteditable="true"><span></span></td><td class="editButton editButtonApply" onclick="addbutton('A');"><span>A</span></td><td class="deleteButton" onclick="addbutton('X');"><span>X</span></td></tr>`;
+    out0 += `<tr class="hoverable" id="newRow" style="display: none;"><td class="id editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="displayname editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="date editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="description editable" contenteditable="true"><span></span></td><td class="spacer"></td><td class="isvisible editable" contenteditable="true"><span></span></td><td class="editButton editButtonApply" onclick="addbutton('A');"><span>A</span></td><td class="deleteButton" onclick="addbutton('X');"><span>X</span></td></tr>`;
 
     eventArray.forEach((event) => {
-        out0 += `<tr class="hoverable" id="${event._id}"><td class="id"><span>${event._id}</span></td><td class="spacer"></td><td class="displayname"><span>${event.displayName}</span></td><td class="spacer"></td><td class="date"><span>${event.dateAsString}</span></td><td class="spacer"></td><td class="isvisible"><span>${event.isVisible}</span></td><td class="editButton" onclick="editbutton('${event._id}');"><span>E</span></td><td class="deleteButton" onclick="deletebutton('${event._id}');"><span>X</span></td></tr>`;
+        out0 += `<tr class="hoverable" id="${event._id}"><td class="id"><span>${event._id}</span></td><td class="spacer"></td><td class="displayname"><span>${event.displayName}</span></td><td class="spacer"></td><td class="date"><span>${event.dateAsString}</span></td><td class="spacer"></td><td class="description"><span>${event.description}</span></td><td class="spacer"></td><td class="isvisible"><span>${event.isVisible}</span></td><td class="editButton" onclick="editbutton('${event._id}');"><span>E</span></td><td class="deleteButton" onclick="deletebutton('${event._id}');"><span>X</span></td></tr>`;
     });
 
-    out = `<table><thead><tr><td class="id">ID</td><td class="spacer"></td><td class="displayname">DisplayName</td><td class="spacer"></td><td class="date">Date</td><td class="spacer"></td><td class="isvisible">IsVisible</td><td class="addButton" onclick="addbutton();" width="42.98px"><span>Add</span></td></tr></thead><tbody>${out0}</tbody></table>`;
+    out = `<table><thead><tr><td class="id">ID</td><td class="spacer"></td><td class="displayname">DisplayName</td><td class="spacer"></td><td class="date">Date</td><td class="spacer"></td><td class="description">Description</td><td class="spacer"></td><td class="isvisible">IsVisible</td><td class="addButton" onclick="addbutton();" width="42.98px"><span>Add</span></td></tr></thead><tbody>${out0}</tbody></table>`;
 
     sendContentAsPage(FILE_NAME, out, res, true, 'admin');
 });
 
 // Create new event entry
 router.post(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
-    let { id, displayName, dateAsString, isVisible } = req.body;
+    let { id, displayName, dateAsString, description, isVisible } = req.body;
     dateAsString = dateAsString || '01.01.2000 00:00:00';
 
     const event = new Event({
@@ -42,6 +42,7 @@ router.post(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
         displayName: displayName || id,
         dateAsString: dateAsString,
         date: convertToDate(dateAsString),
+        description: description,
         isVisible: isVisible || true
     });
 
@@ -56,8 +57,9 @@ router.post(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
 // Update event entry
 router.patch(`/${SITE_NAME}/:id`, ensureAuthenticated, getEvent, async (req, res) => {
     let event = res.event;
-    const { displayName, dateAsString, isVisible } = req.body;
+    const { displayName, dateAsString, description, isVisible } = req.body;
     if (displayName) event.displayName = displayName;
+    if (description) event.description = description;
     if (isVisible == 'true' || isVisible == 'false') event.isVisible = isVisible;
     if (dateAsString) {
         event.dateAsString = dateAsString;

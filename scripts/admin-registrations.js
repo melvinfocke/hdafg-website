@@ -12,7 +12,7 @@ function editbutton(id) {
         const children = document.getElementById(id).children;
         let index = 1;
         Array.from(children).forEach((li) => {
-            if (index % 2 == 1 && index >= 3 && index <= 11) {
+            if (index % 2 == 1 && index >= 3 && index <= 13) {
                 li.setAttribute('contenteditable', 'true');
                 li.classList.add('editable');
                 li.addEventListener('paste', function (event) {
@@ -32,7 +32,7 @@ function editbutton(id) {
         let index = 1;
         let contentArr = [];
         Array.from(children).forEach((li) => {
-            if (index % 2 == 1 && index >= 3 && index <= 11) {
+            if (index % 2 == 1 && index >= 3 && index <= 13) {
                 li.setAttribute('contenteditable', 'false');
                 li.classList.remove('editable');
                 contentArr = [...contentArr, li.innerHTML.replace('<span>', '').replace('</span>', '')];
@@ -59,6 +59,9 @@ function editbutton(id) {
                     data.remarks = item;
                     break;
                 case 4:
+                    data.event = item;
+                    break;
+                case 5:
                     data.dateAsString = item;
                     break;
             }
@@ -83,7 +86,7 @@ function addbutton(value = 'ADD') {
         const children = newRow.children;
         let index = 1;
         Array.from(children).forEach((li) => {
-            if (index % 2 == 1 && index >= 3 && index <= 11) {
+            if (index % 2 == 1 && index >= 3 && index <= 13) {
                 li.innerHTML = '<span></span>';
             }
             index++;
@@ -97,7 +100,7 @@ function addbutton(value = 'ADD') {
         let index = 1;
         let contentArr = [];
         Array.from(children).forEach((li) => {
-            if (index % 2 == 1 && index >= 3 && index <= 11) {
+            if (index % 2 == 1 && index >= 3 && index <= 13) {
                 contentArr = [...contentArr, li.innerHTML.replace('<span>', '').replace('</span>', '')];
             }
             index++;
@@ -118,6 +121,9 @@ function addbutton(value = 'ADD') {
                     data.remarks = item;
                     break;
                 case 4:
+                    data.event = item;
+                    break;
+                case 5:
                     data.dateAsString = item;
                     break;
             }

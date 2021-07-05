@@ -3,10 +3,6 @@ let span = document.getElementById('modal-close');
 let alert = document.getElementById('alert');
 let modalContentImg = document.getElementById('modal-content-img');
 let modalH1DisplayName = document.getElementById('modal-h1-displayname');
-let modalSpanDisplayName = document.getElementById('modal-span-displayname');
-let modalSpanDate = document.getElementById('modal-span-date');
-let modalSpanTime = document.getElementById('modal-span-time');
-let modalSpanUhrzeit = document.getElementById('modal-span-uhrzeit');
 let modalP = document.getElementById('modal-p');
 let eventid = document.getElementById('eventid');
 let submitBtn = document.getElementById('submit');
@@ -28,6 +24,10 @@ const socket = io();
 socket.on('connection');
 
 function showModal(id, displayName, date, time) {
+    let modalSpanTime = document.getElementById('modal-span-time');
+    let modalSpanDisplayName = document.getElementById('modal-span-displayname');
+    let modalSpanDate = document.getElementById('modal-span-date');
+
     let link = document.createElement('link');
     link.href = 'style-modal-open.css';
     link.type = 'text/css';
@@ -39,7 +39,6 @@ function showModal(id, displayName, date, time) {
     modalContentImg.style = `background-image: url('/${id}.png')`;
     modalSpanDate.innerHTML = date;
     modalSpanTime.innerHTML = time != 'undefined' ? ` um <strong>${time} Uhr</strong>` : '';
-    modalSpanUhrzeit.innerHTML = time != 'undefined' ? '' : 'Uhrzeit, ';
     eventid.value = id;
     modal.style.display = 'block';
 }
@@ -117,6 +116,7 @@ submitBtn.onclick = function () {
         eventId.value = '';
         remarks.value = '';
         modalP.innerHTML = data.message;
+        modalP.style.height = 'auto';
     });
 };
 
@@ -145,13 +145,14 @@ function closeModal() {
     textContainerRight.style.display = 'none';
     submitBtn.innerHTML = 'Anmeldung senden';
     modalP.innerHTML = `
-    <strong><span id="modal-span-displayname">Novalja NIGHTBEAT</span></strong> findet am
-    <strong><span id="modal-span-date">17.07.2021</span></strong
-    ><span id="modal-span-time"></span> statt. Wenn du dich mit dem Formular anmeldest,
-    erhälst du innerhalb von 24 Stunden eine Bestätigungswhatsapp. Die endgültige Zusage und
-    Daten wie <span id="modal-span-uhrzeit">Uhrzeit, </span>Adresse und was mitgebracht
-    werden soll findest du dann in der WhatsApp-Nachricht.`;
+    <strong><span id="modal-span-displayname"></span></strong> findet am
+    <strong><span id="modal-span-date"></span></strong
+    ><span id="modal-span-time"></span> statt. Bei Anmeldung mit dem Formular erhälst du
+    innerhalb von 24 Stunden eine Empfangsbestätigung. Die Anmeldung ist aber
+    <strong>nicht</strong> die Zusage zum Event kommen zu dürfen. Die Zustimmung obliegt dem
+    Veranstalter und wird per WhatsApp erteilt.`;
     modal.style.display = 'none';
+    modalP.style.height = '';
 }
 
 function truncate(str, n) {

@@ -42,6 +42,8 @@ app.use('/', require('./routes/admin-registrations'));
 app.use('/', require('./routes/admin-registration-log'));
 app.use('/', require('./routes/admin-admin-login-log'));
 app.use('/', require('./routes/admin-admins'));
+app.use('/', require('./routes/admin-file-uploader'));
+app.use('/', require('./routes/admin-file-explorer'));
 
 app.use('/', require('./routes/redirects'));
 app.use('/', require('./routes/index'));

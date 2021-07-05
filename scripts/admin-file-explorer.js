@@ -1,10 +1,11 @@
-const url = `/admin/events`;
+const url = `/admin/file-explorer`;
 
 function deletebutton(id) {
-    const confirmString = window.prompt(`Gib 'BESTÄTIGEN' ein, um den Eintrag ${id} zu löschen.`, '');
+    const confirmString = window.prompt(`Gib 'BESTÄTIGEN' ein, um die Datei ${id} zu löschen.`, '');
     if (confirmString && confirmString.localeCompare('BESTÄTIGEN') == 0) return deleteEntry(id);
     else window.alert('Löschen wurde abgebrochen.');
 }
+/*
 let buttonState = 'E';
 function editbutton(id) {
     if (buttonState.localeCompare('E') == 0) {
@@ -131,6 +132,7 @@ function addbutton(value = 'ADD') {
         xmlHttp.send(json);
     }
 }
+*/
 
 function deleteEntry(id) {
     let xmlHttp = new XMLHttpRequest();

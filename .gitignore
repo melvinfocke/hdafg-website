@@ -105,3 +105,11 @@ dist
 
 # Saved docker images
 *.tar
+
+# Admin file uploads
+images/*
+!images/.gitkeep
+!images/checkbox-pink.png
+!images/favicon.png
+!images/logo1.png
+!images/welcome-img.png
