@@ -28,15 +28,12 @@
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "express-session": "^1.17.2",
-        "imagemin": "^8.0.0",
-        "imagemin-webp": "^6.0.0",
         "mongoose": "^5.12.15",
         "node-schedule": "^2.0.0",
         "nodemailer": "^6.6.2",
         "passport": "^0.4.1",
         "passport-local": "^1.0.0",
-        "socket.io": "^4.1.2",
-        "trim-newlines": "^4.0.2"
+        "socket.io": "^4.1.2"
     },
     "devDependencies": {
         "nodemon": "^2.0.7"
