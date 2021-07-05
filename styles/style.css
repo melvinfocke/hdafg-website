@@ -58,7 +58,7 @@ nav {
 
 nav > .nav-item {
     flex: unset;
-    margin: 13px 12px;
+    margin: 13px 6px;
     text-align: center;
     font-size: 14px;
 }
@@ -84,12 +84,18 @@ main a {
     user-select: none;
 }
 
-.logo-big {
+.logo-navbar {
     height: 42px;
-    width: 105px;
+    width: 138px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('/logo-276-84.png');
+    background-image: -webkit-image-set(url('/logo-138-42.png') 1x, url('/logo-276-84.png') 2x);
+    background-image: image-set('/logo-138-42.png' 1x, '/logo-276-84.png' 2x);
 }
 
-nav .nav-image {
+nav .nav-item-start {
     display: none;
 }
 
@@ -97,17 +103,53 @@ nav .nav-image {
     z-index: 1;
     width: 100%;
     height: 82vh;
-    background-image: url('/welcome-img.png');
+    background-image: url('/welcome-img-563-563.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 563px) {
+    .welcome-img {
+        background-image: url('/welcome-img-960-960.png');
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .welcome-img {
+        background-image: url('/welcome-img-1400-1400.png');
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .welcome-img {
+        background-image: url('/welcome-img-1950-1950.png');
+    }
+}
+
+@media only screen and (min-width: 1950px) {
+    .welcome-img {
+        background-image: url('/welcome-img-2600-2600.png');
+    }
+}
+
+@media only screen and (min-width: 2600px) {
+    .welcome-img {
+        background-image: url('/welcome-img-3024-3024.png');
+    }
+}
+
+@media only screen and (min-width: 355px) {
+    nav > .nav-item {
+        margin: 13px 12px;
+    }
+}
+
+@media only screen and (min-width: 420px) {
     nav > .nav-item {
         margin: 13px 13px;
     }
-    nav .nav-image {
+    nav .nav-item-start {
         display: flex;
     }
 }
@@ -165,9 +207,12 @@ p {
     padding-bottom: 14px;
 }
 
-.event-div img {
+.event-photo {
     width: 100%;
     height: 144px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .event-div h4 {
@@ -500,7 +545,7 @@ footer {
     visibility: hidden;
 }
 
-.text-container-right img {
+.text-container-right .checkbox-img {
     width: 0;
     margin: 0 -15px 0 0;
     height: auto;
@@ -520,17 +565,24 @@ footer {
         visibility: visible;
     }
 
-    .text-container-right img {
+    .text-container-right .checkbox-img {
         width: 240px;
+        height: 240px;
         margin: -25px 0 0 0;
         padding: 0 5px 0 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-image: url('/checkbox-pink-480-480.png');
+        background-image: -webkit-image-set(url('/checkbox-pink-240-240.png') 1x, url('/checkbox-pink-480-480.png') 2x);
+        background-image: image-set('/checkbox-pink-240-240.png' 1x, '/checkbox-pink-480-480.png' 2x);
     }
 }
 
 .modal-content-img {
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: right center;
 }
 
 .required {

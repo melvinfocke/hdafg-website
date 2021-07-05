@@ -36,7 +36,7 @@ function showModal(id, displayName, date, time) {
 
     modalH1DisplayName.innerHTML = displayName;
     modalSpanDisplayName.innerHTML = displayName;
-    modalContentImg.style = `background-image: url('/${id}.png')`;
+    modalContentImg.id = `${id}-photo-2`;
     modalSpanDate.innerHTML = date;
     modalSpanTime.innerHTML = time != 'undefined' ? ` um <strong>${time} Uhr</strong>` : '';
     eventid.value = id;
@@ -135,7 +135,7 @@ window.onclick = function (event) {
 };
 
 function closeModal() {
-    let link = document.getElementsByTagName('link')[2];
+    let link = document.getElementsByTagName('link')[18];
     link.parentNode.removeChild(link);
 
     form.style = '';

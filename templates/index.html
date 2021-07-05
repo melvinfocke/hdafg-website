@@ -3,8 +3,28 @@
         <meta charset="utf-8" />
         <title>h.d.a.fg</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
+        <link rel="icon" type="image/png" sizes="144x144" href="/icon-144.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="256x256" href="/icon-256.png" />
+        <link rel="icon" type="image/png" sizes="384x384" href="/icon-384.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/apple-touch-icon-167.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
+        <!--<link rel="shortcut icon" type="image/png" href="/favicon.png" />-->
         <link rel="stylesheet" href="/style.css" />
+        <style>
+            /*{INTERNALCSS}*/
+        </style>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/script.js" defer></script>
         <!-- prettier-ignore -->
@@ -15,11 +35,11 @@
             <nav>
                 <div class="nav-image">
                     <a href="#">
-                        <image src="/logo1.png" alt="h.d.a.fg Logo" class="logo-big" />
+                        <div class="logo-navbar"></div>
                     </a>
                 </div>
-                <div class="nav-item">
-                    <a href="#">Startseite</a>
+                <div class="nav-item nav-item-start">
+                    <a href="#">Start</a>
                 </div>
                 <div class="nav-item">
                     <a href="#hdafg">h.d.a.fg?</a>
@@ -68,7 +88,7 @@
                     </div>
                     <div class="spacer-lr"></div>
                 </div>
-                <div class="events-container">{CONTENT}</div>
+                <div class="events-container">{CONTENT1}</div>
                 <div class="seperator">
                     <div class="spacer-lr"></div>
                     <div>
@@ -100,9 +120,7 @@
             <div class="spacer-lr"></div>
             <div id="modal" class="modal">
                 <div class="modal-content">
-                    <div id="modal-content-img" class="modal-content-img">
-                        <!--<image id="modal-img" src="/novalja-nightbeat.png" alt="Novalja NIGHTBEAT Picture" />-->
-                    </div>
+                    <div id="modal-content-img" class="modal-content-img"></div>
                     <div class="modal-content-right">
                         <span class="close" id="modal-close">&times</span>
                         <div class="text">
@@ -155,7 +173,7 @@
                                         <button id="close-btn" class="button-close">Fenster schließen</button>
                                     </div>
                                     <div id="text-container-right" class="text-container-right">
-                                        <img src="/checkbox-pink.png" alt="Pink Checkbox" />
+                                        <div class="checkbox-img"></div>
                                     </div>
                                 </div>
                             </div>

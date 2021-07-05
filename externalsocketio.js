@@ -85,7 +85,7 @@ module.exports = function (io) {
                         let message =
                             hasFailed == true
                                 ? `Vielen Dank fürs Anmelden, doch leider konnte deine Anmeldung für <strong>${event.displayName}</strong> aufgrund eines Serverfehlers nicht erfolgreich übermittelt werden. Bitte versuche es in einigen Stunden erneut oder melde dich bei <a class="link" href="mailto:info.hdafg@gmail.com">info.hdafg@gmail.com</a>, falls das Problem bestehen bleiben sollte. Wir bitten diese Unannehmlichkeiten zu entschuldigen.`
-                                : `Vielen Dank fürs Anmelden! <br>Deine Anmeldung für <strong>${event.displayName}</strong> wurde erfolgreich übermittelt. Die endgültige Zusage und Daten wie Uhrzeit, Adresse und was mitgebracht werden soll werden dir noch per WhatsApp mitgeteilt. Du erhälst nach spätestens 24 Stunden eine Nachricht.`;
+                                : `Vielen Dank fürs Anmelden! <br>Deine Anmeldung für <strong>${event.displayName}</strong> wurde erfolgreich übermittelt. Sie ist jedoch <strong>nicht</strong> die Zusage zum Event kommen zu dürfen. Die endgültige Zusage und Daten wie Uhrzeit, Adresse und was mitgebracht werden soll werden dir innerhalb von 24 Stunden per WhatsApp mitgeteilt.`;
                         socket.emit('sendFormResult', { status: status, message: message });
                         hasSent = true;
                     }

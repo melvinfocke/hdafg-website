@@ -31,7 +31,13 @@ router.get('/:event/gesendet', async (req, res) => {
     const event = await Event.findById(paramEvent);
 
     if (!event) return sendFile(res, paramEvent);
-    sendContentAsPage('event-registration-success', event.displayName, res, false, 'event-registration-success');
+    sendContentAsPage(
+        'event-registration-success',
+        { content1: event.displayName },
+        res,
+        false,
+        'event-registration-success'
+    );
 });
 
 router.get('/:event/fehlgeschlagen', async (req, res) => {

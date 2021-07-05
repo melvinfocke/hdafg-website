@@ -31,7 +31,8 @@ router.get('/', async (req, res) => {
 
     /* * DISPLAY EVENTS * */
     const eventArray = await Event.find({ isVisible: true });
-    let pageContent = '';
+    let eventItemsAsHtml = '';
+    let internalCss = '';
 
     eventArray.sort((a, b) => {
         if (a.date > b.date) return 1;
@@ -42,9 +43,9 @@ router.get('/', async (req, res) => {
         const fullDateString = event.dateAsString + (event.dateAsString.split(' ')[1] ? ' Uhr' : '');
         const dateString = fullDateString.split(' ')[0];
         const timeString = fullDateString.split(' ')[1];
-        pageContent += `
+        eventItemsAsHtml += `
                 <div class="event-div">
-                    <image src="/${event._id}.png" alt="${event.displayName} Foto"></image>
+                    <div id ="${event._id}-photo-1" class="event-photo"></div>
                     <h4>${event.displayName}</h4>
                     <p>
                         <strong>${fullDateString}</strong><br>${event.description}
@@ -52,9 +53,28 @@ router.get('/', async (req, res) => {
                     <!--<a href="/${event._id}">Jetzt anmelden</a>-->
                     <button onclick="showModal('${event._id}', '${event.displayName}', '${dateString}', '${timeString}')">Jetzt anmelden</button>
                 </div>`;
+        internalCss += `
+#${event._id}-photo-1 {
+    background-image: url('/${event._id}-512-288.png');
+    background-image: -webkit-image-set(
+        url('/${event._id}-256-144.png') 1x,
+        url('/${event._id}-512-288.png') 2x
+    );
+    background-image: image-set('/${event._id}-256-144.png.png' 1x, '/${event._id}-512-288.png' 2x);
+}
+@media only screen and (min-width: 563px) {
+    #${event._id}-photo-2 {
+        background-image: url('/${event._id}-512-288.png');
+        background-image: -webkit-image-set(
+            url('/${event._id}-400-525.png') 1x,
+            url('/${event._id}-800-1050.png') 2x
+        );
+        background-image: image-set('/${event._id}-400-525.png' 1x, '/${event._id}-800-1050.png' 2x);
+    }
+}`;
     });
 
-    sendContentAsPage('index', pageContent, res, false, 'index', alertObj);
+    sendContentAsPage('index', { internalCss: internalCss, content1: eventItemsAsHtml }, res, false, 'index', alertObj);
 });
 
 router.post('/', ensureCanRegistrate, async (req, res) => {});

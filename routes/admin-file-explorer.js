@@ -35,7 +35,7 @@ router.get(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
 
     out = `<table><thead><tr><td class="filename">FileName</td><td class="spacer"></td><td class="filesize">FileSize</td><td class="addButton" onclick="addbutton();" width="42.98px"><span>Add</span></td></tr></thead><tbody>${out0}</tbody></table>`;
 
-    sendContentAsPage(FILE_NAME, out, res, true, 'admin');
+    sendContentAsPage(FILE_NAME, { content1: out }, res, true, 'admin');
 });
 
 // Create new entry

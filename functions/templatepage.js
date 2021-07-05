@@ -8,7 +8,12 @@ function sendContentAsPage(siteName, content, res, loadScript = false, templateN
         let templatePageAsString = data.toLocaleString();
 
         templatePageAsString = templatePageAsString.replace('{STYLE}', siteName);
-        templatePageAsString = templatePageAsString.replace('{CONTENT}', content);
+
+        if (content.content1) templatePageAsString = templatePageAsString.replace('{CONTENT1}', content.content1);
+        if (content.content2) templatePageAsString = templatePageAsString.replace('{CONTENT2}', content.content2);
+        if (content.internalCss) {
+            templatePageAsString = templatePageAsString.replace('/*{INTERNALCSS}*/', content.internalCss);
+        }
         if (loadScript == true) {
             templatePageAsString = templatePageAsString.replace('{SCRIPT}', `${siteName}`);
         } else {

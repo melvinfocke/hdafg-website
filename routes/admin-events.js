@@ -29,7 +29,7 @@ router.get(`/${SITE_NAME}`, ensureAuthenticated, async (req, res) => {
 
     out = `<table><thead><tr><td class="id">ID</td><td class="spacer"></td><td class="displayname">DisplayName</td><td class="spacer"></td><td class="date">Date</td><td class="spacer"></td><td class="description">Description</td><td class="spacer"></td><td class="isvisible">IsVisible</td><td class="addButton" onclick="addbutton();" width="42.98px"><span>Add</span></td></tr></thead><tbody>${out0}</tbody></table>`;
 
-    sendContentAsPage(FILE_NAME, out, res, true, 'admin');
+    sendContentAsPage(FILE_NAME, { content1: out }, res, true, 'admin');
 });
 
 // Create new event entry
