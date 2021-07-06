@@ -2,7 +2,7 @@ const Event = require('./models/event');
 const Registration = require('./models/registration');
 const nodemailer = require('nodemailer');
 const { ensureCanRegistrate } = require('./functions/authentication');
-const { convertToDate, convertToDateAsString } = require('./functions/date');
+const { convertToDateAsString } = require('./functions/date');
 const {
     DOMAIN,
     MAIL_HOST,
