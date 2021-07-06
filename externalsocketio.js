@@ -3,14 +3,30 @@ const Registration = require('./models/registration');
 const nodemailer = require('nodemailer');
 const { ensureCanRegistrate } = require('./functions/authentication');
 const { convertToDate, convertToDateAsString } = require('./functions/date');
-const { DOMAIN, MAIL_HOST, MAIL_PORT, MAIL_SECURE_CONNECTION, MAIL_USER, MAIL_PASSWORD, MAIL_TO } = require('./config');
+const {
+    DOMAIN,
+    MAIL_HOST,
+    MAIL_PORT,
+    MAIL_SECURE_CONNECTION,
+    MAIL_USER,
+    MAIL_PASSWORD,
+    MAIL_TO,
+    MAX_REGISTRATIONS_PER_DAY
+} = require('./config');
 
 module.exports = function (io) {
     io.sockets.on('connection', (socket) => {
         socket.on('sendForm', async (data) => {
             const ip = socket.request.connection.remoteAddress;
 
-            if (ensureCanRegistrate(ip) == false) return;
+            if ((await ensureCanRegistrate(ip)) == false) {
+                socket.emit('sendFormResult', {
+                    status: 'fehlgeschlagen',
+                    message: `Du hast zu viele Anmeldeversuche getätigt. Es sind nur maximal ${MAX_REGISTRATIONS_PER_DAY} Anmeldungen pro Tag pro IP-Adresse möglich.`
+                });
+                return;
+            }
+            console.log('- - - - Test - - - -');
 
             let { givenName, surName, phone, remarks, eventId } = data;
 

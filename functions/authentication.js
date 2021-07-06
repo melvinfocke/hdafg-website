@@ -72,7 +72,7 @@ async function ensureCanRegistrate(ip) {
     }
     if (dateNow.getTime() - registrationLog.lastRegistration > 86400000) registrationLog.amountOfRegistrations = 0;
 
-    if (registrationLog.amountOfRegistrations > MAX_REGISTRATIONS_PER_DAY) {
+    if (registrationLog.amountOfRegistrations >= MAX_REGISTRATIONS_PER_DAY) {
         await registrationLog.save();
 
         //console.log(registrationLog);
