@@ -104,7 +104,7 @@ submitBtn.onclick = function () {
     socket.on('sendFormResult', (data) => {
         span.scrollIntoView();
 
-        modalH1DisplayName.innerHTML = `ANMELDUNG ${data.status.toUpperCase()}`;
+        modalH1DisplayName.innerHTML = `ANMELDUNG ${data.status}`;
         formContainerLeft.style.display = 'none';
         formContainerRight.style.display = 'none';
         textContainerLeft.style.display = 'block';
@@ -144,12 +144,12 @@ function closeModal() {
     textContainerRight.style.display = 'none';
     submitBtn.innerHTML = 'Anmeldung senden';
     modalP.innerHTML = `
-    <strong><span id="modal-span-displayname"></span></strong> findet am
+    <strong><span id="modal-span-displayname"></span></strong> fin&shy;det am
     <strong><span id="modal-span-date"></span></strong
-    ><span id="modal-span-time"></span> statt. Bei Anmeldung mit dem Formular erhälst du
-    innerhalb von 24 Stunden eine Empfangsbestätigung. Die Anmeldung ist aber
-    <strong>nicht</strong> die Zusage zum Event kommen zu dürfen. Die Zustimmung obliegt dem
-    Veranstalter und wird per WhatsApp erteilt.`;
+    ><span id="modal-span-time"></span> statt. Bei An&shy;mel&shy;dung mit dem For&shy;mu&shy;lar er&shy;hälst du
+    in&shy;ner&shy;halb von 24 Stun&shy;den ei&shy;ne Em&shy;pfangs&shy;be&shy;stä&shy;ti&shy;gung. Die An&shy;mel&shy;dung ist aber
+    <strong>nicht</strong> die Zu&shy;sa&shy;ge zum Event kom&shy;men zu dür&shy;fen. Die Zu&shy;stim&shy;mung ob&shy;liegt dem
+    Ver&shy;an&shy;stal&shy;ter und wird per WhatsApp er&shy;teilt.`;
     modal.style.display = 'none';
     modalP.style.height = '';
 }
