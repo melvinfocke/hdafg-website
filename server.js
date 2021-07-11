@@ -8,6 +8,8 @@ const { DATABASE } = require('./config');
 const { send404Page } = require('./functions/error404');
 const { sendFile } = require('./functions/sendfile');
 const scheduler = require('./functions/scheduler');
+const passport = require('passport');
+const session = require('express-session');
 
 //
 
@@ -17,18 +19,17 @@ db.on('error', (error) => console.error(error));
 db.on('open', () => console.log('Connected to database'));
 
 // Passport authentication
-const passport = require('passport');
-const session = require('express-session');
-require('./functions/passport')(passport);
-app.use(
-    session({
-        secret: 'secret',
-        resave: true,
-        saveUninitialized: true
-    })
-);
+const sessionMiddleware = session({
+    name: 'auth',
+    secret: 'secretForSession',
+    resave: false,
+    saveUninitialized: false
+});
+
+app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
+require('./functions/passport')(passport);
 
 // Other express settings
 app.use(express.json());
@@ -53,7 +54,7 @@ app.get('/:file', (req, res) => sendFile(res, req.params.file));
 app.get('*', (req, res) => send404Page(res));
 
 require('./socketio/index')(io);
-//require('./socketio/admin-dashboard')(io);
+require('./socketio/admin-dashboard')(io, sessionMiddleware, passport);
 scheduler();
 
 server.listen(8080, () => console.log('Listening on port 8080'));

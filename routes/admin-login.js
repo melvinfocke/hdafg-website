@@ -28,7 +28,9 @@ router.get(`/admin/dashboard`, ensureAuthenticated, async (req, res) => {
 });
 
 router.get(`/admin/logout`, (req, res) => {
+    const socketId = req.session.socketId;
     req.logout();
+    res.cookie('sonnect.sid', '', { expires: new Date() });
     res.redirect('/admin');
 });
 

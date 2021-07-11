@@ -1,0 +1,377 @@
+:root {
+    --background-gray: #414751;
+    --background-light-gray: rgba(255, 255, 255, 0.25);
+    --background-dark-gray: rgba(22, 22, 22, 0.5);
+    --text-light-gray: #f1f1f1;
+    --accent-neon-pink: #fc2177;
+    --background-dark-blue-top: #011432;
+    --background-dark-blue-bottom: #010409;
+    --background-dark-blue-2-top: #02132e;
+    --background-dark-blue-2-bottom: #010c1e;
+    --background-gray-top: #414e65;
+    --background-gray-bottom: #414a57;
+}
+
+* {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-image: #000000;
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(0px, auto) minmax(250px, 1140px) minmax(0px, auto);
+}
+
+#content-container {
+    display: flex;
+    box-shadow: 0 0 20px var(--text-light-gray);
+    outline: 2px solid var(--text-light-gray);
+}
+
+.spacer-lr {
+    background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));
+    z-index: -1;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * FOOTER  * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * */
+
+footer {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    margin-bottom: 10px;
+    color: var(--text-light-gray);
+    font-size: 12px;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * HEADER  * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * */
+
+header {
+    position: relative;
+    background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));
+}
+
+.header {
+    height: 100vh;
+    background-color: var(--background-light-gray);
+}
+
+nav {
+    padding-top: 10px;
+    width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav > div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0 20px 0;
+}
+
+nav button,
+nav a {
+    width: 100%;
+    padding: 3px 6px;
+    margin-left: 14px;
+    margin-right: 14px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    background-color: transparent;
+    color: var(--text-light-gray);
+    border: none;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav button:hover,
+nav a:hover {
+    color: var(--accent-neon-pink);
+}
+
+.nav-sub-item {
+    padding: 3px 6px 3px 18px;
+}
+
+.nav-logo {
+    height: 42px;
+    width: 138px;
+    margin: 0 21px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.no-webp .nav-logo {
+    background-image: url('/logo-276-84.png');
+    background-image: -webkit-image-set(url('/logo-138-42.png') 1x, url('/logo-276-84.png') 2x);
+    background-image: image-set('/logo-138-42.png' 1x, '/logo-276-84.png' 2x);
+}
+
+.webp .nav-logo {
+    background-image: url('/logo-276-84.webp');
+    background-image: -webkit-image-set(url('/logo-138-42.webp') 1x, url('/logo-276-84.webp') 2x);
+    background-image: image-set('/logo-138-42.webp' 1x, '/logo-276-84.webp' 2x);
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * CONTENT DIV * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+main {
+    width: 100%;
+    display: flex;
+    background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    outline: 2px solid var(--text-light-gray);
+    background-color: var(--background-light-gray);
+    position: relative;
+}
+
+#main-process-bar {
+    visibility: hidden;
+    display: flex;
+    position: relative;
+    gap: 10px;
+    width: auto;
+    height: 20px;
+    padding: 34px 20px;
+}
+
+.main-percentage-container {
+    display: flex;
+    height: 16px;
+    width: 47px;
+    position: relative;
+    top: calc(50% - 8px);
+}
+
+#main-percentage {
+    color: var(--text-light-gray);
+    text-align: right;
+    width: 100%;
+}
+
+.main-bar-background {
+    background-color: var(--background-light-gray);
+    width: 100%;
+    height: 10px;
+    padding: 2px;
+    position: relative;
+    top: calc(50% - 7px);
+}
+
+#main-bar {
+    background-color: var(--accent-neon-pink);
+    position: relative;
+    top: calc(50% - 5px);
+    height: 10px;
+    width: 0%;
+}
+
+#main-button-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc(100% - 40px);
+    height: auto;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    border-top: 2px solid var(--text-light-gray);
+    transition: height 0.3s;
+}
+
+#main-button-section div {
+    position: relative;
+    width: 180px;
+    height: 60px;
+}
+
+#main-button-section button {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 75px);
+    display: block;
+    cursor: pointer;
+    color: var(--text-light-gray);
+    background-color: transparent;
+    height: 40px;
+    width: 150px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0px 0;
+    padding: 8px 16px 8px 16px;
+    border-color: var(--text-light-gray);
+    border-style: solid;
+    border-width: 3px;
+    transition: 0.3s;
+}
+
+#main-button-section button:hover {
+    margin: -2px -4px;
+    padding: 10px 20px 10px 20px;
+    width: 158px;
+    height: 44px;
+    color: var(--text-dark-gray);
+    border-color: var(--text-light-gray);
+    background-color: var(--text-light-gray);
+}
+
+.main h1 {
+    color: var(--text-light-gray);
+    font-size: 30px;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+.main p {
+    font-size: 17px;
+    color: var(--text-light-gray);
+    line-height: 1.8;
+    padding: 5px 20px;
+    margin: 0;
+}
+
+#main-p button {
+    padding: 3px 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    background-color: transparent;
+    color: var(--text-light-gray);
+    border: none;
+    text-decoration: underline dotted var(--accent-neon-pink);
+    transition: color 0.3s;
+}
+
+#main-p button:hover {
+    color: var(--accent-neon-pink);
+}
+
+.main input,
+.main textarea {
+    background-color: transparent;
+    font-size: 16px;
+    color: var(--text-light-gray);
+    border: 3px solid var(--text-light-gray);
+    padding: 6px 8px;
+    margin: 5px 10px 16px 20px;
+    line-height: 1.4;
+}
+
+.preview {
+    height: 100%;
+    width: 290px;
+    background-color: var(--background-light-gray);
+}
+
+.preview > h2 {
+    color: var(--text-light-gray);
+    text-align: center;
+    font-size: 28px;
+    margin: 28px 20px;
+}
+
+.preview .no-preview-p {
+    position: relative;
+    text-align: center;
+    width: 216px;
+    font-size: 17px;
+    color: var(--text-light-gray);
+    background-color: var(--background-light-gray);
+    line-height: 1.8;
+    padding: 195px 20px 200px 20px;
+    margin: 0 17px;
+}
+
+.preview-content-background {
+    height: calc(100% - 100px - 48px);
+}
+
+.preview-content {
+    width: 290px;
+    padding: 17px 0;
+    background-image: linear-gradient(var(--background-dark-blue-2-top), var(--background-dark-blue-2-bottom));
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * EVENT DIV * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.event-div {
+    position: relative;
+    left: calc(50% - 128px);
+    box-shadow: 0 0 30px var(--background-dark-gray);
+    width: 256px;
+    height: 441px;
+    background-color: var(--background-light-gray);
+    padding-bottom: 14px;
+}
+
+.event-photo {
+    width: 100%;
+    height: 144px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.event-div h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-light-gray);
+    text-align: center;
+    margin: 20px 20px 0 20px;
+}
+
+.event-div p {
+    font-size: 17px;
+    color: var(--text-light-gray);
+    line-height: 1.4;
+    text-align: left;
+    margin: 20px 20px 0 20px;
+    height: 180px;
+}
+
+.event-div button {
+    display: block;
+    cursor: pointer;
+    color: var(--text-light-gray);
+    background-color: transparent;
+    height: 40px;
+    width: 216px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 20px;
+    padding: 8px 16px 8px 16px;
+    border-color: var(--text-light-gray);
+    border-style: solid;
+    border-width: 3px;
+    transition: 0.3s;
+}
+
+.event-div button:hover {
+    margin: -2px 16px;
+    padding: 10px 20px 10px 20px;
+    width: 224px;
+    height: 44px;
+    color: var(--text-dark-gray);
+    border-color: var(--text-light-gray);
+    background-color: var(--text-light-gray);
+}

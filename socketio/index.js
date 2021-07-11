@@ -15,7 +15,8 @@ const {
 } = require('../config');
 
 module.exports = function (io) {
-    io.sockets.on('connection', (socket) => {
+    io.of('/').on('connection', (socket) => {
+        console.log('Test | Start page');
         socket.on('sendForm', async (data) => {
             //console.log('v01: ' + socket?.request?.connection?.remoteAddress);
             //console.log('v02: ' + socket?.handshake?.address);
@@ -56,7 +57,13 @@ module.exports = function (io) {
             if (!(givenName && surName && phone)) return;
 
             const event = await Event.findById(eventId);
-            if (!event) return;
+            if (!event) {
+                /*socket.emit('sendFormResult', {
+                    status: 'FEHL&shy;GE&shy;SCHLA&shy;GEN',
+                    message: `Du kannst dich beim Event nicht anmelden, da es bereits entfernt wurde. Lade die Website neu, damit dir die aktuellsten Events angezeigt werden.`
+                });*/
+                return;
+            }
 
             const dateNow = new Date();
             const registration = new Registration({

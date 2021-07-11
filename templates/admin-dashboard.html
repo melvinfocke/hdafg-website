@@ -2,19 +2,115 @@
     <head>
         <meta charset="utf-8" />
         <title>h.d.a.fg - Admin Dashboard</title>
+        <script src="/modernizr-webp.js"></script>
+        <link rel="stylesheet" href="/style-admin-dashboard.css" />
         <script src="/socket.io/socket.io.js" defer></script>
         <script src="/admin-dashboard.js" defer></script>
-        <!--<script src="/{SCRIPT}.js" defer></script>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!--<link rel="shortcut icon" type="image/png" href="/favicon.png" />-->
     </head>
     <body>
-        <header>
-            <h1>Hauptquartier der abstrakten Freizeitgestaltung</h1>
-        </header>
-        <main>
-            <div id="content">{CONTENT1}</div>
-        </main>
-        <footer>Copyright 2021 - Hosted by Melvin Focke</footer>
+        <div class="spacer-lr"></div>
+        <div id="content-container">
+            <header>
+                <div class="header">
+                    <nav>
+                        <div class="nav-image">
+                            <a href="/admin/dashboard2">
+                                <div class="nav-logo"></div>
+                            </a>
+                        </div>
+                        <div class="nav-events">
+                            <button
+                                onclick="selectInNav({ id: 'events', displayName: 'Events', subItems: [{ id: 'create-event', displayName: 'Event erstellen' }, { id: 'edit-event', displayName: 'Event bearbeiten' }, { id: 'delete-event', displayName: 'Event löschen' }, { id: 'list-events', displayName: 'Events auflisten' }] })"
+                            >
+                                Events
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'create-event', displayName: 'Event erstellen' })"
+                            >
+                                Event erstellen
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'edit-event', displayName: 'Event bearbeiten' })"
+                            >
+                                Event bearbeiten
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'delete-event', displayName: 'Event löschen' })"
+                            >
+                                Event löschen
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'list-events', displayName: 'Events auflisten' })"
+                            >
+                                Events auflisten
+                            </button>
+                        </div>
+                        <div class="nav-registrations">
+                            <button
+                                onclick="selectInNav({ id: 'registrations', displayName: 'Anmeldungen', subItems: [{ id: 'create-registration', displayName: 'Anmeldung erstellen' }, { id: 'edit-registration', displayName: 'Anmeldung bearbeiten' }, { id: 'delete-registration', displayName: 'Anmeldung löschen' }, { id: 'list-registrations', displayName: 'Anmeldungen auflisten' }] })"
+                            >
+                                Anmeldungen
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'create-registration', displayName: 'Anmeldung erstellen' })"
+                            >
+                                Anmeldung erstellen
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'edit-registration', displayName: 'Anmeldung bearbeiten' })"
+                            >
+                                Anmeldung bearbeiten
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'delete-registration', displayName: 'Anmeldung löschen' })"
+                            >
+                                Anmeldung löschen
+                            </button>
+                            <button
+                                class="nav-sub-item"
+                                onclick="selectInNav({ id: 'list-registrations', displayName: 'Anmeldungen auflisten' })"
+                            >
+                                Anmeldungen auflisten
+                            </button>
+                        </div>
+                        <div class="nav-logout">
+                            <a href="/admin/logout">Logout</a>
+                        </div>
+                    </nav>
+                    <footer>Copyright 2021 - <br />Hosted by Melvin Focke</footer>
+                </div>
+            </header>
+            <main>
+                <div class="main">
+                    <div id="main-process-bar">
+                        <div class="main-percentage-container">
+                            <span id="main-percentage">0%</span>
+                        </div>
+                        <div class="main-bar-background">
+                            <div id="main-bar"></div>
+                        </div>
+                    </div>
+                    <h1 id="main-headline"></h1>
+                    <p id="main-p"></p>
+                    <div id="main-button-section"></div>
+                </div>
+                <div class="preview">
+                    <h2>Preview</h2>
+                    <div id="preview-content" class="preview-content">
+                        <p class="no-preview-p">Derzeit steht keine Vorschau zur Verfügung.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="spacer-lr"></div>
     </body>
 </html>
