@@ -10,6 +10,15 @@ function deleteFilesWhichStartWith(dirPath, name) {
     }
 }
 
+function deleteFile(filePath) {
+    try {
+        fs.unlinkSync(filePath);
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
 const getAllFiles = function (dirPath, arrayOfFiles) {
     files = fs.readdirSync(dirPath);
 
@@ -60,4 +69,4 @@ const getFileSize = function (filePath) {
     return convertBytes(size);
 };
 
-module.exports = { getTotalSize, getAllFiles, deleteFilesWhichStartWith, getFileSize };
+module.exports = { getTotalSize, getAllFiles, deleteFilesWhichStartWith, deleteFile, getFileSize };

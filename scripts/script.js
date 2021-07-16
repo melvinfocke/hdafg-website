@@ -28,11 +28,46 @@ function showModal(id, displayName, date, time) {
     let modalSpanDisplayName = document.getElementById('modal-span-displayname');
     let modalSpanDate = document.getElementById('modal-span-date');
 
-    let link = document.createElement('link');
-    link.href = 'style-modal-open.css';
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    document.getElementsByTagName('head')[0].appendChild(link);
+    let style = document.createElement('style');
+    style.id = 'style-modal-open';
+    style.innerText = `
+    :root {
+        --nav-bar: rgba(252, 33, 119, 0.9);
+    }
+    
+    hr,
+    h1,
+    h2:not(.modal *),
+    h3,
+    h4,
+    p:not(.modal *),
+    img:not(.logo-big, .modal *),
+    .event-div,
+    .welcome-img,
+    footer {
+        filter: blur(6px);
+    }
+    
+    header {
+        background-color: transparent;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    @media only screen and (min-height: 585px) and (min-width: 563px) {
+        header {
+            background-color: var(--nav-bar);
+        }
+    
+        nav {
+            display: flex;
+        }
+    }
+    
+    `;
+    document.getElementsByTagName('head')[0].appendChild(style);
 
     modalH1DisplayName.innerHTML = displayName;
     modalSpanDisplayName.innerHTML = displayName;
@@ -134,8 +169,8 @@ window.onclick = function (event) {
 };
 
 function closeModal() {
-    let link = document.getElementsByTagName('link')[18];
-    link.parentNode.removeChild(link);
+    let style = document.getElementById('style-modal-open');
+    style.parentNode.removeChild(style);
 
     form.style = '';
     formContainerLeft.style.display = 'block';

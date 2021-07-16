@@ -1,0 +1,118 @@
+:root {
+    --background-dark-blue-top: #011432;
+    --background-dark-blue-bottom: #010409;
+    --background-black: #000000;
+    --background-gray: #414751;
+    --background-light-gray: rgba(255, 255, 255, 0.25);
+    --text-light-gray: #f1f1f1;
+    --text-dark-gray: #2c2c2c;
+    --accent-neon-pink: #fc2177;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--background-gray);
+}
+
+* {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));
+}
+
+main {
+    text-align: center;
+    width: 100vw;
+    height: 95vh;
+    vertical-align: middle;
+    display: table-cell;
+}
+#form-content {
+    padding-top: 20px;
+    height: 240px;
+    width: 290px;
+    display: inline-block;
+    background-color: var(--background-light-gray);
+}
+
+#form > *:not(button) {
+    width: 250px;
+}
+
+#errorBox {
+    margin-top: 25px;
+    color: var(--accent-neon-pink);
+    text-align: center;
+}
+#errorBox span {
+    display: inline-block;
+    width: 290px;
+}
+
+label {
+    font-size: 16px;
+    color: var(--text-light-gray);
+    display: block;
+    margin: 0 20px;
+    text-align: left;
+}
+
+input {
+    background-color: transparent;
+    font-size: 16px;
+    color: var(--text-light-gray);
+    border: 3px solid var(--text-light-gray);
+    padding: 6px 8px;
+    line-height: 1.4;
+    margin: 5px 20px 20px 20px;
+}
+
+button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    color: var(--text-light-gray);
+    background-color: transparent;
+    height: 40px;
+    width: 250px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 20px;
+    padding: 8px 16px 8px 16px;
+    border-color: var(--text-light-gray);
+    border-style: solid;
+    border-width: 3px;
+    transition: 0.3s;
+}
+
+button:hover {
+    margin: 8px 16px;
+    padding: 10px 20px 10px 20px;
+    width: 258px;
+    height: 44px;
+    color: var(--text-dark-gray);
+    border-color: var(--text-light-gray);
+    background-color: var(--text-light-gray);
+}
+
+footer {
+    color: var(--text-dark-gray);
+    text-align: center;
+}

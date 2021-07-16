@@ -1,6 +1,6 @@
 {
     "name": "hdafg-website",
-    "version": "0.2.0",
+    "version": "1.1.0",
     "description": "Nodejs website of Philipp Wirth's taverne",
     "main": "server.js",
     "scripts": {
@@ -33,6 +33,7 @@
         "nodemailer": "^6.6.2",
         "passport": "^0.4.1",
         "passport-local": "^1.0.0",
+        "sharp": "^0.28.3",
         "socket.io": "^4.1.2"
     },
     "devDependencies": {

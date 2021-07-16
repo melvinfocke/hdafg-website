@@ -21,9 +21,9 @@ router.get('/admin', async (req, res) => {
     sendAdminLoginAsPage(res);
 });
 
-router.get(`/admin/dashboard`, ensureAuthenticated, async (req, res) => {
+router.get(`/admin/dashboard2`, ensureAuthenticated, async (req, res) => {
     const content =
-        '<a href="/admin/file-explorer">File Explorer</a><a href="/admin/file-uploader">File Uploader</a><a href="/admin/events">Events</a><a href="/admin/registrations">Anmeldungen</a><a href="/admin/registration-log">Anmeldungslog</a><a href="/admin/admin-login-log">Admin Login Log</a><a href="/admin/admins">Admins</a><a href="/admin/logout">Logout</a>';
+        '<ul><li><a href="/admin/file-explorer">File Explorer</a></li><li><a href="/admin/file-uploader">File Uploader</a></li><li><a href="/admin/events">Events</a></li><li><a href="/admin/registrations">Anmeldungen</a></li><li><a href="/admin/registration-log">Anmeldungslog</a></li><li><a href="/admin/admin-login-log">Admin Login Log</a></li><li><a href="/admin/admins">Admins</a></li><li><a href="/admin/logout">Logout</a></li></ul>';
     sendContentAsPage(`admin-dashboard`, { content1: content }, res, false, 'admin');
 });
 
