@@ -15,7 +15,7 @@ const eventSchema = new mongoose.Schema({
         default: '00.00.0000 00:00:00'
     },
     date: {
-        type: String,
+        type: Number,
         required: true
     },
     description: {

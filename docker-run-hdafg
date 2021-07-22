@@ -6,4 +6,4 @@ docker run -d --name hdafg-website -ip 172.17.0.3 -p 3000:8080 \
  -e MAIL_USER="info.hdafg@gmail.com" \
  -e MAIL_PASSWORD="G843V^5%P^UonPJ4*V*3DW5MSaf*P%bdugjpP6o%U9&327&%" \
  -e MAX_REGISTRATIONS_PER_DAY=2000 \
- -e MAIL_TO="Melvin:melvin.focke.phone@gmail.com" melvinfocke/hdafg-website:1.0.2
+ -e MAIL_TO="Melvin:melvin.focke.phone@gmail.com" melvinfocke/hdafg-website:1.1.0

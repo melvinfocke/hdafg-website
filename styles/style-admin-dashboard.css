@@ -1,9 +1,5 @@
 :root {
-<<<<<<< Updated upstream
-    --background-gray: #414751;
-=======
     --background-gray: #414347;
->>>>>>> Stashed changes
     --background-light-gray: rgba(255, 255, 255, 0.25);
     --background-dark-gray: rgba(22, 22, 22, 0.5);
     --text-light-gray: #f1f1f1;
@@ -20,10 +16,6 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-<<<<<<< Updated upstream
-body {
-    background-image: #000000;
-=======
 ::-webkit-scrollbar {
     width: 0;
 }
@@ -49,7 +41,6 @@ a {
 
 body {
     background-image: linear-gradient(var(--background-dark-blue-2-top), var(--background-dark-blue-2-bottom));
->>>>>>> Stashed changes
     margin: 0;
     display: grid;
     grid-template-columns: minmax(0px, auto) minmax(250px, 1140px) minmax(0px, auto);
@@ -86,28 +77,17 @@ footer {
 
 header {
     position: relative;
-<<<<<<< Updated upstream
-    background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));
-}
-
-.header {
-=======
     /*background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));*/
 }
 
 .header {
     border-right: 2px solid var(--text-light-gray);
->>>>>>> Stashed changes
     height: 100vh;
     background-color: var(--background-light-gray);
 }
 
 nav {
-<<<<<<< Updated upstream
-    padding-top: 10px;
-=======
     padding-top: 24px;
->>>>>>> Stashed changes
     width: 220px;
     display: flex;
     flex-wrap: wrap;
@@ -155,17 +135,6 @@ nav a:hover {
 }
 
 .no-webp .nav-logo {
-<<<<<<< Updated upstream
-    background-image: url('/logo-276-84.png');
-    background-image: -webkit-image-set(url('/logo-138-42.png') 1x, url('/logo-276-84.png') 2x);
-    background-image: image-set('/logo-138-42.png' 1x, '/logo-276-84.png' 2x);
-}
-
-.webp .nav-logo {
-    background-image: url('/logo-276-84.webp');
-    background-image: -webkit-image-set(url('/logo-138-42.webp') 1x, url('/logo-276-84.webp') 2x);
-    background-image: image-set('/logo-138-42.webp' 1x, '/logo-276-84.webp' 2x);
-=======
     background-image: url('/admin-logo-276-84.png');
     background-image: -webkit-image-set(url('/admin-logo-138-42.png') 1x, url('/admin-logo-276-84.png') 2x);
     background-image: image-set('/admin-logo-138-42.png' 1x, '/admin-logo-276-84.png' 2x);
@@ -175,7 +144,6 @@ nav a:hover {
     background-image: url('/admin-logo-276-84.webp');
     background-image: -webkit-image-set(url('/admin-logo-138-42.webp') 1x, url('/admin-logo-276-84.webp') 2x);
     background-image: image-set('/admin-logo-138-42.webp' 1x, '/admin-logo-276-84.webp' 2x);
->>>>>>> Stashed changes
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -184,18 +152,6 @@ nav a:hover {
 
 main {
     width: 100%;
-<<<<<<< Updated upstream
-    display: flex;
-    background-image: linear-gradient(var(--background-dark-blue-top), var(--background-dark-blue-bottom));
-}
-
-.main {
-    height: 100%;
-    width: 100%;
-    outline: 2px solid var(--text-light-gray);
-    background-color: var(--background-light-gray);
-    position: relative;
-=======
     height: 100vh;
     display: flex;
     overflow-x: hidden;
@@ -210,7 +166,6 @@ main {
     background-color: var(--background-light-gray);
     overflow-y: scroll;
     overflow-x: hidden;
->>>>>>> Stashed changes
 }
 
 #main-process-bar {
@@ -252,10 +207,7 @@ main {
     top: calc(50% - 5px);
     height: 10px;
     width: 0%;
-<<<<<<< Updated upstream
-=======
     transition: width 0.3s;
->>>>>>> Stashed changes
 }
 
 #main-button-section {
@@ -264,19 +216,11 @@ main {
     justify-content: center;
     width: calc(100% - 40px);
     height: auto;
-<<<<<<< Updated upstream
-    padding: 10px 20px;
-    position: absolute;
-    bottom: 0;
-    border-top: 2px solid var(--text-light-gray);
-    transition: height 0.3s;
-=======
     margin: 20px 0 0 0;
     padding: 10px 20px;
     position: relative;
     bottom: 0;
     border-top: 2px solid var(--text-light-gray);
->>>>>>> Stashed changes
 }
 
 #main-button-section div {
@@ -299,11 +243,7 @@ main {
     text-align: center;
     font-weight: bold;
     font-size: 16px;
-<<<<<<< Updated upstream
-    margin: 0px 0;
-=======
     margin: 0;
->>>>>>> Stashed changes
     padding: 8px 16px 8px 16px;
     border-color: var(--text-light-gray);
     border-style: solid;
@@ -355,22 +295,11 @@ main {
 .main input,
 .main textarea {
     background-color: transparent;
-<<<<<<< Updated upstream
-=======
     resize: vertical;
->>>>>>> Stashed changes
     font-size: 16px;
     color: var(--text-light-gray);
     border: 3px solid var(--text-light-gray);
     padding: 6px 8px;
-<<<<<<< Updated upstream
-    margin: 5px 10px 16px 20px;
-    line-height: 1.4;
-}
-
-.preview {
-    height: 100%;
-=======
     margin: 5px 0 16px 0;
     line-height: 1.4;
 }
@@ -391,13 +320,10 @@ main {
 
 .preview {
     height: 100vh;
->>>>>>> Stashed changes
     width: 290px;
     background-color: var(--background-light-gray);
 }
 
-<<<<<<< Updated upstream
-=======
 #preview-photo-1 {
     z-index: 10;
 }
@@ -406,16 +332,11 @@ main {
     border-left: 2px solid var(--text-light-gray);
 }
 
->>>>>>> Stashed changes
 .preview > h2 {
     color: var(--text-light-gray);
     text-align: center;
     font-size: 28px;
-<<<<<<< Updated upstream
-    margin: 28px 20px;
-=======
     margin: 28px 0;
->>>>>>> Stashed changes
 }
 
 .preview .no-preview-p {
@@ -431,11 +352,7 @@ main {
 }
 
 .preview-content-background {
-<<<<<<< Updated upstream
-    height: calc(100% - 100px - 48px);
-=======
     height: calc(100vh - 100px - 48px);
->>>>>>> Stashed changes
 }
 
 .preview-content {
@@ -444,8 +361,6 @@ main {
     background-image: linear-gradient(var(--background-dark-blue-2-top), var(--background-dark-blue-2-bottom));
 }
 
-<<<<<<< Updated upstream
-=======
 .input-radio {
     display: block;
 }
@@ -454,7 +369,6 @@ main {
     margin: 5px 5px 16px 20px;
 }
 
->>>>>>> Stashed changes
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /* * * * * * * * * * * EVENT DIV * * * * * * * * * * * */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -521,8 +435,6 @@ main {
     border-color: var(--text-light-gray);
     background-color: var(--text-light-gray);
 }
-<<<<<<< Updated upstream
-=======
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /* * * * * * * * * * * LIST EVENTS * * * * * * * * * * */
@@ -863,4 +775,3 @@ main {
         visibility: hidden;
     }
 }
->>>>>>> Stashed changes

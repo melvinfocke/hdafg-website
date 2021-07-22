@@ -9,8 +9,12 @@ function sendContentAsPage(siteName, content, res, loadScript = false, templateN
 
         templatePageAsString = templatePageAsString.replace('{STYLE}', siteName);
 
-        if (content.content1) templatePageAsString = templatePageAsString.replace('{CONTENT1}', content.content1);
-        if (content.content2) templatePageAsString = templatePageAsString.replace('{CONTENT2}', content.content2);
+        if (content.content1 || content.content1 == '') {
+            templatePageAsString = templatePageAsString.replace('{CONTENT1}', content.content1);
+        }
+        if (content.content2 || content.content2 == '') {
+            templatePageAsString = templatePageAsString.replace('{CONTENT2}', content.content2);
+        }
         if (content.internalCss) {
             templatePageAsString = templatePageAsString.replace('/*{INTERNALCSS}*/', content.internalCss);
         }

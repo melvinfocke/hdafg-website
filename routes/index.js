@@ -90,7 +90,20 @@ router.get('/', async (req, res) => {
 }`;
     });
 
-    sendContentAsPage('index', { internalCss: internalCss, content1: eventItemsAsHtml }, res, false, 'index', alertObj);
+    if (!internalCss) internalCss = '.events-container { display: none; }';
+
+    const content1 = eventItemsAsHtml
+        ? 'Hier könnt ihr euch anmelden und Teil des Ganzen werden.'
+        : 'Es gibt derzeit keine anstehenden Events. Bitte schau in ein paar Tagen erneut vorbei.';
+
+    sendContentAsPage(
+        'index',
+        { internalCss: internalCss, content1: content1, content2: eventItemsAsHtml },
+        res,
+        false,
+        'index',
+        alertObj
+    );
 });
 
 router.post('/', ensureCanRegistrate, async (req, res) => {});

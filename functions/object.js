@@ -12,4 +12,16 @@ function convertStringToObject(str) {
     return object;
 }
 
-module.exports = { convertStringToObject };
+function combineStringObjectArray(stringArray) {
+    let returnObject = {};
+    stringArray?.forEach((str) => {
+        let object = convertStringToObject(str);
+
+        Object.keys(object).forEach((key) => {
+            returnObject[key] = object[key];
+        });
+    });
+    return returnObject;
+}
+
+module.exports = { convertStringToObject, combineStringObjectArray };

@@ -20,7 +20,18 @@ const setupSchema = new mongoose.Schema({
     },
     data: {
         type: /*mongoose.Schema.Types.Mixed*/ String,
-        required: true
+        required: true,
+        default: '{|,|}'
+    },
+    tempData: {
+        type: String,
+        required: true,
+        default: '{|,|}'
+    },
+    currentPageData: {
+        type: String,
+        required: true,
+        default: '{|,|}'
     }
 });
 
