@@ -325,6 +325,9 @@ async function sendSetupContent(data) {
         // console.log(setup.data);
         // console.log(setup.tempData);
         userInputs?.forEach((userInput) => {
+            userInput.id = userInput?.id?.trim();
+            userInput.value = userInput?.value?.trim();
+
             if (userInput?.value?.replace(/\s/g, '') !== '' && userInput?.id?.replace(/\s/g, '') !== '') {
                 setup.tempData += `${userInput.id}{|:|}${userInput.value}{|,|}`;
             }
@@ -387,6 +390,8 @@ async function sendSetupContent(data) {
             /* VALIDATE */
             // console.log('- - - - - - - - VALUE - - - - - - - -');
             // console.log(userInput.value);
+            userInput.id = userInput?.id?.trim();
+            userInput.value = userInput?.value?.trim();
             if (
                 userInput?.id?.includes('{|,|}') ||
                 userInput?.value?.includes('{|,|}') ||
