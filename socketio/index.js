@@ -4,33 +4,20 @@ const nodemailer = require('nodemailer');
 const { ensureCanRegistrate } = require('../functions/authentication');
 const { convertToDateAsString } = require('../functions/date');
 const {
-    DOMAIN,
     MAIL_HOST,
     MAIL_PORT,
     MAIL_SECURE_CONNECTION,
     MAIL_USER,
     MAIL_PASSWORD,
     MAIL_TO,
-    MAX_REGISTRATIONS_PER_DAY
+    MAX_REGISTRATIONS_PER_DAY,
+    CITY
 } = require('../config');
 
 module.exports = function (io) {
     io.of('/').on('connection', (socket) => {
         //console.log('Test | Start page');
         socket.on('sendForm', async (data) => {
-            //console.log('v01: ' + socket?.request?.connection?.remoteAddress);
-            //console.log('v02: ' + socket?.handshake?.address);
-            //console.log('v03: ' + socket?.conn?.transport?.socket?._socket?.remoteAddress);
-            //console.log('v04: ' + socket?.handshake?.headers?.host);
-            //console.log('v05: ' + socket?.conn?.remoteAddress);
-            //console.log('v06: ' + socket?.handshake?.headers['x-real-ip']);
-            //let endpoint = socket?.manager?.handshaken[socket?.id]?.address;
-            //console.log('v6: ' + endpoint?.address);
-            //console.log('v07: ' + socket?.handshake?.address?.address);
-            //console.log('v08: ' + socket?.handshake?.headers['x-client-ip']);
-            //console.log('v09: ' + socket?.handshake?.headers['x-forwarded-for']);
-            //console.log('v10: ' + socket?.handshake?.headers['x-forwarded-by']);
-
             const ip = socket?.handshake?.headers['x-forwarded-for'] || socket?.request?.connection?.remoteAddress;
 
             if ((await ensureCanRegistrate(ip)) == false) {
@@ -103,9 +90,9 @@ module.exports = function (io) {
                 const receiverInfo = mailToEntry.split(':');
 
                 let mailOptions = {
-                    from: MAIL_USER,
+                    from: `h.d.a.fg ${CITY} <${MAIL_USER}>`,
                     to: receiverInfo[1],
-                    subject: `Neue Anmeldung bei ${DOMAIN}`,
+                    subject: `Neue Anmeldung für ${event.displayName}`,
                     html: `Hey ${receiverInfo[0]}, <br><br>jemand hat sich am <strong>${dateAndTimeAsStringObj[0]}</strong> um <strong>${dateAndTimeAsStringObj[1]} Uhr</strong> für <strong>${event.displayName}</strong> angemeldet. Hier sind seine/ihre Kontaktdaten: <br><br>Name: <strong>${givenName} ${surName}</strong> <br>Telefon: <strong><a href="tel:${phone}">${phone}</a></strong>${remarksString} <br><br>Mit freundlichen Grüßen <br><i>h.d.a.fg System</i><br><br><small>Mail ID: ${newRegistration._id}</small>`
                 };
 

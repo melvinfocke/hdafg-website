@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const CITY = process.env.CITY || 'NO-CITY';
 const ROOT_DIRECTORY = process.env.ROOT_DIRECTORY || __dirname;
 const DATABASE = process.env.DATABASE || 'mongodb://localhost/hdafg';
 const MAIL_HOST = process.env.MAIL_HOST || 'smtp.gmail.com';
@@ -8,6 +9,7 @@ const MAIL_SECURE_CONNECTION = process.env.MAIL_SECURE_CONNECTION || true;
 const MAIL_USER = process.env.MAIL_USER || '';
 const MAIL_PASSWORD = process.env.MAIL_PASSWORD || '';
 const MAIL_TO = process.env.MAIL_TO || '';
+const MAIL_FROM = process.env.MAIL_FROM || `h.d.a.fg ${CITY} <${CITY?.toLowerCase()}-noreply@hdafg.de>`;
 const DOMAIN = process.env.DOMAIN || 'localhost';
 const MAX_FAILED_ADMIN_LOGINS_PER_DAY = process.env.MAX_FAILED_ADMIN_LOGINS_PER_DAY || 5;
 const MAX_REGISTRATIONS_PER_DAY = process.env.MAX_REGISTRATIONS_PER_DAY || 3;
@@ -17,6 +19,7 @@ const MAX_UPLOAD_DIRECTORY_SIZE = process.env.MAX_UPLOAD_DIRECTORY_SIZE || 34896
 const MAX_UPLOAD_FILE_SIZE = process.env.MAX_UPLOAD_FILE_SIZE || 10737418240; // Default: 10737418240; equals 10GiB
 
 module.exports = {
+    CITY,
     ROOT_DIRECTORY,
     DATABASE,
     MAIL_HOST,
@@ -25,6 +28,7 @@ module.exports = {
     MAIL_USER,
     MAIL_PASSWORD,
     MAIL_TO,
+    MAIL_FROM,
     DOMAIN,
     MAX_FAILED_ADMIN_LOGINS_PER_DAY,
     MAX_REGISTRATIONS_PER_DAY,
