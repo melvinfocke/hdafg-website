@@ -53,7 +53,6 @@ header {
 nav {
     display: flex;
     z-index: 3;
-    /*flex-wrap: wrap;*/
 }
 
 nav > .nav-item {
@@ -75,7 +74,8 @@ nav a {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
-nav a:hover {
+nav a:hover,
+nav a:focus {
     color: var(--text-dark-gray);
     text-decoration-color: var(--background-dark-gray);
 }
@@ -300,7 +300,8 @@ p {
     transition: 0.3s;
 }
 
-.event-div button:hover {
+.event-div button:hover,
+.event-div button:focus {
     margin: -2px 16px;
     padding: 10px 20px 10px 20px;
     width: 224px;
@@ -322,7 +323,8 @@ footer {
     transition: color 0.3s;
 }
 
-.link:hover {
+.link:hover,
+.link:focus {
     color: var(--accent-neon-pink);
 }
 
@@ -464,7 +466,8 @@ footer {
     height: 40.22px;
 }
 
-.form-container-right button:hover {
+.form-container-right button:hover,
+.form-container-right button:focus {
     margin: -2px 16px -2px 16px;
     width: 248px;
     height: 44px;
@@ -505,7 +508,8 @@ footer {
     -webkit-tap-highlight-color: transparent;
 }
 
-.modal-content .close:hover {
+.modal-content .close:hover,
+.modal-content .close:focus {
     color: var(--accent-neon-pink);
 }
 
@@ -545,7 +549,8 @@ footer {
         margin: 0 20px 0 10px;
     }
 
-    .form-container-right button:hover {
+    .form-container-right button:hover,
+    .form-container-right button:focus {
         margin: -2px 16px -2px 6px;
     }
 
@@ -596,7 +601,8 @@ footer {
     transition: 0.3s;
 }
 
-.button-close:hover {
+.button-close:hover,
+.button-close:focus {
     margin: -2px 16px -2px 16px;
     width: 248px;
     height: 44px;

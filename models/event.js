@@ -9,6 +9,11 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    city: {
+        type: String,
+        required: true,
+        default: 'undefined'
+    },
     dateAsString: {
         type: String,
         required: true,

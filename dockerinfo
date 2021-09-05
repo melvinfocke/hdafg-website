@@ -1,3 +1,1 @@
-sudo docker build . -t melvinfocke/hdafg-website:0.0.0
-
-sudo docker save melvinfocke/hdafg-website -o hdafg-website-0.0.0.tar
+sudo docker build . -t melvinfocke/hdafg-website:0.0.0 && sudo docker save melvinfocke/hdafg-website -o hdafg-website-0.0.0.tar && sudo chown melvin:melvin hdafg-website-0.0.0.tar

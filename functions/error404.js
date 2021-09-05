@@ -1,15 +1,16 @@
-const fs = require('fs');
-const { ROOT_DIRECTORY } = require('../config');
+const { MODE, CITY, DOMAIN } = require('../config');
 
 function send404Page(res) {
-    res.redirect('/?404');
-    //fs.readFile(`${ROOT_DIRECTORY}/templates/error404.html`, (err, data) => {
-    /*
-        if (err) return res.status(404).json({ error: 'This page does not exist.' });
-        let error404PageAsString = data.toLocaleString(); */
-
-    //res.status(404).send(error404PageAsString);
-    //});
+    const cityLowerCase = MODE === 'NODE' ? CITY.toLowerCase() : '';
+    res.status(404).render('error', {
+        city: CITY,
+        status: 404,
+        time: -1,
+        url: undefined,
+        message: `Ge&shy;he zu&shy;rück zu <a href="/${cityLowerCase}">${DOMAIN}${
+            cityLowerCase === '' ? '' : '/'
+        }${cityLowerCase}</a>`
+    });
 }
 
 module.exports = { send404Page };

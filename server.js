@@ -1,60 +1,89 @@
+// LOAD CONFIG
+const { MODE, CITY, DATABASE, MAINTENANCE_REDIRECT_URL } = require('./config');
+
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server, { cors: { origin: '*' } });
+const socketIoPath = (MODE === 'NODE' ? '/' + CITY.toLowerCase() : '') + '/socket.io';
+const io = require('socket.io')(server, { cors: { origin: '*' }, path: socketIoPath });
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { DATABASE } = require('./config');
 const { send404Page } = require('./functions/error404');
 const { sendFile } = require('./functions/sendfile');
-const scheduler = require('./functions/scheduler');
-const passport = require('passport');
-const session = require('express-session');
 
-//
-
+// DATABASE
 mongoose.connect(DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.on('open', () => console.log('Connected to database'));
 
-// Passport authentication
-const sessionMiddleware = session({
-    name: 'auth',
-    secret: 'secretForSession',
-    resave: false,
-    saveUninitialized: false
-});
+// PASSPORT AUTHENTICATION (IF MODE === 'CONTROLLER')
+let sessionMiddleware;
+let passport;
+switch (MODE) {
+    case 'CONTROLLER':
+        const session = require('express-session');
+        passport = require('passport');
 
-app.use(sessionMiddleware);
-app.use(passport.initialize());
-app.use(passport.session());
-require('./functions/passport')(passport);
+        sessionMiddleware = session({
+            name: 'auth',
+            secret: 'secretForSession',
+            resave: false,
+            saveUninitialized: false
+        });
+        app.use(sessionMiddleware);
+        app.use(passport.initialize());
+        app.use(passport.session());
+        require('./functions/controller/passport')(passport);
+}
 
-// Other express settings
+// OTHER EXPRESS SETTINGS
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.set('trust proxy', true);
+app.set('view engine', 'ejs');
 
-app.use('/', require('./routes/admin-login'));
-app.use('/', require('./routes/admin-events'));
-app.use('/', require('./routes/admin-registrations'));
-app.use('/', require('./routes/admin-registration-log'));
-app.use('/', require('./routes/admin-admin-login-log'));
-app.use('/', require('./routes/admin-admins'));
-app.use('/', require('./routes/admin-file-uploader'));
-app.use('/', require('./routes/admin-file-explorer'));
-app.use('/', require('./routes/admin-dashboard'));
+// ROUTES
+if (MAINTENANCE_REDIRECT_URL) {
+    app.get('*', (req, res) => res.redirect(MAINTENANCE_REDIRECT_URL));
+    server.listen(8080, () => console.log(`Listening in maintenance redirect mode`));
+    return;
+}
 
-app.use('/', require('./routes/redirects'));
-app.use('/', require('./routes/index'));
+switch (MODE) {
+    case 'CONTROLLER':
+        app.use('/', require('./routes/controller/login'));
+        app.use('/', require('./routes/controller/events'));
+        app.use('/', require('./routes/controller/registrations'));
+        app.use('/', require('./routes/controller/registration-log'));
+        app.use('/', require('./routes/controller/admin-login-log'));
+        app.use('/', require('./routes/controller/admins'));
+        app.use('/', require('./routes/controller/file-uploader'));
+        app.use('/', require('./routes/controller/file-explorer'));
+        app.use('/', require('./routes/controller/dashboard'));
+        app.use('/', require('./routes/controller/list-all-cities'));
+        app.use('/', require('./routes/controller/error'));
+        break;
+    case 'NODE':
+        app.use('/', require('./routes/node/index'));
+        //app.use('/', require('./routes/node/redirects'));
+        break;
+    default:
+        app.get('*', (req, res) => res.status(500).send('Error: MODE needs to be CONTROLLER or NODE'));
+}
 
 app.get('/:file', (req, res) => sendFile(res, req.params.file));
 app.get('*', (req, res) => send404Page(res));
 
-require('./socketio/index')(io);
-require('./socketio/admin-dashboard')(io, sessionMiddleware, passport);
-scheduler();
+// SOCKET.IO, SCHEDULER AND SERVERNAME
+switch (MODE) {
+    case 'CONTROLLER':
+        require('./socketio/controller/dashboard')(io, sessionMiddleware, passport);
+        require('./functions/controller/scheduler');
+        break;
+    case 'NODE':
+        break;
+}
 
-server.listen(8080, () => console.log('Listening on port 8080'));
+server.listen(8080, () => console.log(`Listening as ${MODE?.toLowerCase()}`));

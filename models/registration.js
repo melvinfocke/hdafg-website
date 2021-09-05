@@ -23,6 +23,11 @@ const registrationSchema = new mongoose.Schema({
         required: true,
         default: 'undefined'
     },
+    city: {
+        type: String,
+        required: true,
+        default: 'undefined'
+    },
     dateAsString: {
         type: String,
         required: true,

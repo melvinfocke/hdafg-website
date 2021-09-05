@@ -19,10 +19,7 @@ const phone = document.getElementById('phone');
 const eventId = document.getElementById('eventid');
 const remarks = document.getElementById('remarks');
 
-/* Socket.io */
-const socket = io(window.location.origin);
-socket.on('connection');
-
+let isModalVisible = false;
 function showModal(id, displayName, date, time) {
     let modalSpanTime = document.getElementById('modal-span-time');
     let modalSpanDisplayName = document.getElementById('modal-span-displayname');
@@ -67,8 +64,10 @@ function showModal(id, displayName, date, time) {
     }
     
     `;
-    document.getElementsByTagName('head')[0].appendChild(style);
-
+    if (isModalVisible == false) {
+        isModalVisible = true;
+        document.getElementsByTagName('head')[0].appendChild(style);
+    }
     modalH1DisplayName.innerHTML = displayName;
     modalSpanDisplayName.innerHTML = displayName;
     modalContentImg.id = `${id}-photo-2`;
@@ -128,29 +127,12 @@ submitBtn.onclick = function () {
 
     submitBtn.innerHTML = 'Bitte warten...';
 
-    socket.emit('sendForm', {
+    sendForm({
         givenName: givenName.value,
         surName: surName.value,
         phone: phone.value,
         eventId: eventId.value,
         remarks: remarks.value
-    });
-
-    socket.on('sendFormResult', (data) => {
-        span.scrollIntoView();
-
-        modalH1DisplayName.innerHTML = `ANMELDUNG ${data.status}`;
-        formContainerLeft.style.display = 'none';
-        formContainerRight.style.display = 'none';
-        textContainerLeft.style.display = 'block';
-        textContainerRight.style.display = 'block';
-        givenName.value = '';
-        surName.value = '';
-        phone.value = '';
-        eventId.value = '';
-        remarks.value = '';
-        modalP.innerHTML = data.message;
-        modalP.style.height = 'auto';
     });
 };
 
@@ -169,6 +151,7 @@ window.onclick = function (event) {
 };
 
 function closeModal() {
+    isModalVisible = false;
     let style = document.getElementById('style-modal-open');
     style.parentNode.removeChild(style);
 
@@ -191,4 +174,32 @@ function closeModal() {
 
 function truncate(str, n) {
     return str?.length > n ? str?.substr(0, n - 1) : str;
+}
+
+function sendForm(obj) {
+    let json = JSON.stringify(obj);
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('POST', `${window.location.href}`, true);
+    xmlHttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xmlHttp.onload = () => {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            const responseObj = JSON.parse(xmlHttp.responseText);
+
+            span.scrollIntoView();
+
+            modalH1DisplayName.innerHTML = `ANMELDUNG ${responseObj.status}`;
+            formContainerLeft.style.display = 'none';
+            formContainerRight.style.display = 'none';
+            textContainerLeft.style.display = 'block';
+            textContainerRight.style.display = 'block';
+            givenName.value = '';
+            surName.value = '';
+            phone.value = '';
+            eventId.value = '';
+            remarks.value = '';
+            modalP.innerHTML = responseObj.message;
+            modalP.style.height = 'auto';
+        }
+    };
+    xmlHttp.send(json);
 }

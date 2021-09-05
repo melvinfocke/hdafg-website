@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { ROOT_DIRECTORY, UPLOAD_DIRECTORY } = require('../config');
-const { send404Page } = require('../functions/error404');
+const { send404Page } = require('./error404');
 
 function sendFile(res, file) {
     file = file || '';
