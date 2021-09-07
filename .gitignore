@@ -109,3 +109,7 @@ dist
 # Admin file uploads
 uploads/*
 !uploads/.gitkeep
+
+# Local dev files
+docker-run-hdafg
+dockerinfo

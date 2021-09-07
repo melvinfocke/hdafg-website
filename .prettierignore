@@ -1,2 +1,3 @@
 *.ejs
 README.md
+.gitignore

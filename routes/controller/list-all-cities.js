@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     let allCitiesArray = ALL_CITIES.split('{|,|}');
     allCitiesArray?.forEach((cityStr) => {
         let city = cityStr.split('{|:|}')[0];
-        let whyText = cityStr.split('{|:|}')[1];
+        let cityDescription = cityStr.split('{|:|}')[1];
         let filteredEventArray = eventArray.filter((event) => event?.city === city && event?.isVisible == true);
         filteredEventArray?.sort((a, b) => {
             if (a.date > b.date) return 1;
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         });
         let event = filteredEventArray[0] || {};
         event.city = city;
-        event.whyText = whyText;
+        event.cityDescription = cityDescription;
         nextEventArray.push(event);
     });
     res.render('list-all-cities', { internalCss: getInternalCss(nextEventArray), nextEventArray });

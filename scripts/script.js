@@ -72,7 +72,7 @@ function showModal(id, displayName, date, time) {
     modalSpanDisplayName.innerHTML = displayName;
     modalContentImg.id = `${id}-photo-2`;
     modalSpanDate.innerHTML = date;
-    modalSpanTime.innerHTML = time != 'undefined' ? ` um <strong>${time} Uhr</strong>` : '';
+    modalSpanTime.innerHTML = time != '' ? ` um <strong>${time} Uhr</strong>` : '';
     eventid.value = id;
     modal.style.display = 'block';
 }

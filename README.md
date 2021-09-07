@@ -12,11 +12,11 @@
 
 The hdafg-website can run in two different modes: CONTROLLER or NODE. 
 
-#### Controller Mode
+### Controller Mode
 
 The website shows a login page where admins can log in and add, edit and delete events. Admins can also access the 'Legacy Dashboard' to get even more settings to play with. Normal visitors have no access to change any settings and can't really use the website. You need **exactly one** docker container running in 'Controller' mode.
 
-#### Node Mode
+### Node Mode
 
 The website shows the homepage of h.d.a.fg where visitors can register for upcoming events. You need **at least one** docker container running in 'Node' mode.
 
@@ -26,12 +26,12 @@ The website shows the homepage of h.d.a.fg where visitors can register for upcom
 
 The required Docker  environment variables depend on the mode of the container.
 
-#### Controller Mode
+### Controller Mode
 
 | Name                                  | Default Value             | Valid Values                                             | Description                                                  |
 | :------------------------------------ | :------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ |
 | TZ                                    | UTC                       | see: time zone code                                      | Specifies the time zone of the server                        |
-| MODE                                  | NODE                      | ['Node', 'CONTROLLER']                                   | Sets the mode in which the container operates.               |
+| MODE                                  | NODE                      | ['NODE', 'CONTROLLER']                                   | Sets the mode in which the container operates.               |
 | ALL_CITIES                            | NO-CITY                   | List with city names; items are separated by comma (',') | A list of all specified cities on all containers in Node mode |
 | DATABASE                              | mongodb://localhost/hdafg | mongodb://*{host}*/*{dbname}*                            | -                                                            |
 | DOMAIN                                | localhost                 | any domain (without https://)                            | -                                                            |
@@ -47,12 +47,12 @@ Example:
  -e DATABASE="mongodb://172.18.0.11/hdafg" \
  -e DOMAIN="hdafg.de" melvinfocke/hdafg-website:1.2.0`
 
-#### Node Mode
+### Node Mode
 
 | Name                      | Default Value                                   | Valid Values                                      | Description                                                  |
 | ------------------------- | ----------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
 | TZ                        | UTC                                             | see: time zone code                               | Specifies the time zone of the server                        |
-| MODE                      | NODE                                            | ['Node', 'CONTROLLER']                            | Sets the mode in which the container operates.               |
+| MODE                      | NODE                                            | ['NODE', 'CONTROLLER']                            | Sets the mode in which the container operates.               |
 | CITY                      | NO-CITY                                         | Name of a city                                    | Specifies an event location                                  |
 | CONTROLLER_URL            | https://www.hdafg.de                            | any url; see: default value                       | Specifies the controller's url                               |
 | DATABASE                  | mongodb://localhost/hdafg                       | mongodb://*{host}*/*{dbname}*                     | -                                                            |

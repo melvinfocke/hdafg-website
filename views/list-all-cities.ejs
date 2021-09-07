@@ -43,7 +43,7 @@
                 <div class="city-div">
                     <div id="<%= event?.city?.toLowerCase() %>-photo-1" class="city-photo"></div>
                     <h4><%= event?.city %></h4>
-                    <p><strong>Nächstes Event:</strong><br /><%= fullDateString !== 'undefined' ? fullDateString : 'keins' %><br /><br /><strong>Warum <%= event?.city %>?</strong><br /><%= event?.whyText %></p>
+                    <p><strong>Nächstes Event:</strong><br /><%= fullDateString !== 'undefined' ? fullDateString : 'keins' %><br /><br /><strong>Beschreibung:</strong><br /><%= event?.cityDescription %></p>
                     <button
                         onclick="location.href = '/<%= event?.city?.toLowerCase() %>'"
                     >
