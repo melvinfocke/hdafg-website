@@ -3,7 +3,7 @@ const { MODE, CITY, DOMAIN } = require('../config');
 function send404Page(res) {
     const cityLowerCase = MODE === 'NODE' ? CITY.toLowerCase() : '';
     res.status(404).render('error', {
-        city: CITY,
+        city: MODE === 'NODE' ? CITY : undefined,
         status: 404,
         time: -1,
         url: undefined,
