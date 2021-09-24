@@ -1,0 +1,65 @@
+version: '3.1'
+
+services:
+    mongo:
+        image: mongo
+        restart: always
+
+    controller:
+        build: .
+        restart: always
+        volumes:
+            - /hdafg-uploads:/usr/src/app/uploads
+        environment:
+            - TZ=Europe/Berlin
+            - MODE=CONTROLLER
+            - ALL_CITIES=Ludwigsfelde{|:|}Das Hauptquartier der ab-strakten Freizeitgestaltung startete 2019 zeitgleich mit Philipp's Taverne und hat seinen Ursprung hier in Lud-wigsfelde.{|,|}Marburg{|:|}Das Hauptquartier der ab-strakten Freizeitgestaltung hat sich mittlerweile expan-diert und nun gibt es eine Außenstelle in Marburg.
+            - DOMAIN=hdafg.de
+        ports:
+            - 3001:8080
+        depends_on:
+            - mongo
+
+    node-ludwigsfelde:
+        build: .
+        restart: always
+        volumes:
+            - /hdafg-uploads:/usr/src/app/uploads
+        environment:
+            - TZ=Europe/Berlin
+            - CITY=Ludwigsfelde
+            - DOMAIN=hdafg.de
+            - MAIL_HOST=smtp.gmail.com
+            - MAIL_PORT=465
+            - MAIL_SECURE_CONNECTION=true
+            - MAIL_USER=ludwigsfelde.noreply.hdafg
+            - MAIL_PASSWORD=This_is_a_Password_123
+            - MAIL_TO=Melvin:melvin@gmail.com,Philipp:philipp@gmail.com
+            - MAIL_FROM=h.d.a.fg Ludwigsfelde <ludwigsfelde-noreply@hdafg.de>
+        ports:
+            - 3002:8080
+        depends_on:
+            - mongo
+            - controller
+
+    node-marburg:
+        build: .
+        restart: always
+        volumes:
+            - /hdafg-uploads:/usr/src/app/uploads
+        environment:
+            - TZ=Europe/Berlin
+            - CITY=Marburg
+            - DOMAIN=hdafg.de
+            - MAIL_HOST=smtp.gmail.com
+            - MAIL_PORT=465
+            - MAIL_SECURE_CONNECTION=true
+            - MAIL_USER=marburg.noreply.hdafg
+            - MAIL_PASSWORD=This_is_a_Password_123
+            - MAIL_TO=Melvin:melvin@gmail.com,Philipp:philipp@gmail.com
+            - MAIL_FROM=h.d.a.fg Marburg <marburg-noreply@hdafg.de>
+        ports:
+            - 3003:8080
+        depends_on:
+            - mongo
+            - controller

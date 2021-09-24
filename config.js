@@ -3,9 +3,8 @@ require('dotenv').config();
 const MODE = process.env.MODE || 'NODE'; // Select one: [CONTROLLER, NODE]
 const CITY = process.env.CITY || 'NO-CITY';
 const ALL_CITIES = process.env.ALL_CITIES || 'NO-CITY';
-const CONTROLLER_URL = process.env.CONTROLLER_URL || 'https://www.hdafg.de';
 const ROOT_DIRECTORY = process.env.ROOT_DIRECTORY || __dirname;
-const DATABASE = process.env.DATABASE || 'mongodb://localhost/hdafg';
+const DATABASE = process.env.DATABASE || 'mongodb://mongo/hdafg';
 const MAIL_HOST = process.env.MAIL_HOST || 'smtp.gmail.com';
 const MAIL_PORT = process.env.MAIL_PORT || 465;
 const MAIL_SECURE_CONNECTION = process.env.MAIL_SECURE_CONNECTION || true;
@@ -26,7 +25,6 @@ module.exports = {
     MODE,
     CITY,
     ALL_CITIES,
-    CONTROLLER_URL,
     ROOT_DIRECTORY,
     DATABASE,
     MAIL_HOST,

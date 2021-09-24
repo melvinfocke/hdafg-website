@@ -67,7 +67,6 @@ switch (MODE) {
         break;
     case 'NODE':
         app.use('/', require('./routes/node/index'));
-        //app.use('/', require('./routes/node/redirects'));
         break;
     default:
         app.get('*', (req, res) => res.status(500).send('Error: MODE needs to be CONTROLLER or NODE'));
