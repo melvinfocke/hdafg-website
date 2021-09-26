@@ -106,7 +106,7 @@ router.post('/', async (req, res) => {
         let mailOptions = {
             from: MAIL_FROM,
             to: receiverInfo[1],
-            subject: `Neue Anmeldung für ${event.displayName}`,
+            subject: `${givenname} ${surName} hat sich für ${event.displayName} angemeldet`,
             html: `Hey ${receiverInfo[0]}, <br><br>jemand hat sich am <strong>${dateAndTimeAsStringObj[0]}</strong> um <strong>${dateAndTimeAsStringObj[1]} Uhr</strong> für <strong>${event.displayName}</strong> angemeldet. Hier sind seine/ihre Kontaktdaten: <br><br>Name: <strong>${givenName} ${surName}</strong> <br>Telefon: <strong><a href="tel:${phone}">${phone}</a></strong>${remarksString} <br><br>Mit freundlichen Grüßen <br><i>h.d.a.fg System</i><br><br><small>Mail ID: ${newRegistration._id}</small>`
         };
 
