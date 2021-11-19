@@ -359,10 +359,13 @@ async function sendSetupContent(data) {
                 userInput?.id?.includes('{|:|}') ||
                 userInput?.value?.includes('{|:|}') ||
                 userInput?.id?.replace(/\s/g, '') === '' ||
-                userInput?.value?.replace(/\s/g, '') === ''
+                userInput?.value?.replace(/\s/g, '') === '' ||
+                userInput?.id?.replace(/\s/g, '') === '[undefined]' ||
+                userInput?.value?.replace(/\s/g, '') === '[undefined]'
             ) {
                 socket.emit('sendError', {
-                    message: 'Die Eingabe darf nicht leer sein und nicht {|,|} oder {|:|} enthalten.'
+                    message:
+                        'Die Eingabe darf nicht leer sein, nicht [undefined] sein und nicht {|,|} oder {|:|} enthalten.'
                 });
                 setup.currentPage--;
                 return;
@@ -509,7 +512,7 @@ async function sendSetupContent(data) {
 
     let dataObject = combineStringObjectArray([setup.data, setup.tempData, setup.currentPageData]);
 
-    let eventId = '{|:|}';
+    let eventId = '[undefined]';
 
     if (setup?.type == 'create-event' && dataObject?.eventId && dataObject['256-144']) eventId = dataObject?.eventId;
     if (setup?.type != 'create-event' && dataObject?.eventId) eventId = dataObject?.eventId;

@@ -56,6 +56,11 @@
                     <div>
                         <h3 id="hdafg">h.d.a.fg?</h3>
                         <h2>Haupt&shy;quar&shy;tier der ab&shy;strak&shy;ten Frei&shy;zeit&shy;ge&shy;stal&shy;tung</h2>
+                        <% if (city === 'Marburg') { %>
+                        <p>
+                            Die erste Außenstelle des H.d.a.fg, in Marburg, ist nicht an einen festen Ort gebunden. Ob Kneipentour, Saufen, Kino oder Party, das H.d.a.fg macht Marburg zu seiner Bühne. Wir bieten hier Veranstaltungen für Studierende und Freunde. Werde jetzt Teil davon und schicke uns deine Anmeldung für das nächste Event noch heute.
+                        </p>
+                        <% } else { %>
                         <p>
                             Romantisch gelegen in <%= city %> liegt das bescheidene Hauptquartier der abstrakten
                             Freizeitgestaltung. Vor allem der kulturelle Aspekt des Konsumieres von Alkohol wird hier
@@ -64,6 +69,7 @@
                             Sound- und Lightsystem auf höchstem technischem Niveau sind die Grundlage für wunderschöne
                             Lebensmomente und Begegnungen.
                         </p>
+                        <% } %>
                     </div>
                     <div class="spacer-lr"></div>
                 </div>
