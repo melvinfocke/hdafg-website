@@ -1,3 +1,4 @@
+/*
 require('dotenv').config();
 
 const MODE = process.env.MODE || 'NODE'; // Select one: [CONTROLLER, NODE]
@@ -42,4 +43,37 @@ module.exports = {
     MAX_UPLOAD_DIRECTORY_SIZE,
     MAX_UPLOAD_FILE_SIZE,
     MAINTENANCE_REDIRECT_URL
+};
+*/
+
+require('dotenv').config();
+const envs = process.env;
+
+module.exports = {
+    // General
+    ROOT_DIRECTORY: envs.ROOT_DIRECTORY || __dirname,
+    DATABASE: envs.DATABASE || 'mongodb://localhost/hdafg',
+    DOMAIN: envs.DOMAIN || 'localhost',
+    SECRET_FOR_SESSION: envs.SECRET_FOR_SESSION,
+    ALL_CITIES: envs.ALL_CITIES,
+
+    // Mail
+    MAIL_HOST: envs.MAIL_HOST || 'smtp.gmail.com',
+    MAIL_PORT: envs.MAIL_PORT || 465,
+    MAIL_SECURE_CONNECTION: envs.MAIL_SECURE_CONNECTION || true,
+    MAIL_USER_LU: envs.MAIL_USER_LU,
+    MAIL_PASSWORD_LU: envs.MAIL_PASSWORD_LU,
+    MAIL_FROM_LU: envs.MAIL_FROM_LU || 'h.d.a.fg Ludwigsfelde <fakeentry@hdafg.de>',
+    MAIL_USER_MA: envs.MAIL_USER_MA,
+    MAIL_PASSWORD_MA: envs.MAIL_PASSWORD_MA,
+    MAIL_FROM_MA: envs.MAIL_FROM_MA || 'h.d.a.fg Marburg <fakeentry@hdafg.de>',
+    MAIL_TO: envs.MAIL_TO,
+
+    // Block spam
+    MAX_FAILED_ADMIN_LOGINS_PER_DAY: envs.MAX_FAILED_ADMIN_LOGINS_PER_DAY || 5,
+    MAX_REGISTRATIONS_PER_DAY: envs.MAX_REGISTRATIONS_PER_DAY || 6,
+    UPLOAD_DIRECTORY: envs.UPLOAD_DIRECTORY || 'uploads',
+    DISALLOWED_FILE_NAMES_FOR_UPLOAD: envs.DISALLOWED_FILE_NAMES_FOR_UPLOAD || '.gitkeep',
+    MAX_UPLOAD_DIRECTORY_SIZE: envs.MAX_UPLOAD_DIRECTORY_SIZE || 3489660928, // Default: 3489660928; equals 3.25GiB
+    MAX_UPLOAD_FILE_SIZE: envs.MAX_UPLOAD_FILE_SIZE || 10737418240 // Default: 10737418240; equals 10GiB
 };

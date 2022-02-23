@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -18,5 +18,5 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+EXPOSE 80
 CMD [ "node", "server.js" ]

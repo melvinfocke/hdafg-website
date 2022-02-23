@@ -1,6 +1,6 @@
 {
     "name": "hdafg-website",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "Nodejs website of Philipp Wirth's taverne",
     "main": "server.js",
     "scripts": {
@@ -16,18 +16,18 @@
         "Philipp Wirth"
     ],
     "author": "Melvin Focke",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/melvinfocke/hdafg-website/issues"
     },
-    "homepage": "https://github.com/melvinfocke/hdafg-website#readme",
+    "homepage": "https://www.hdafg.de",
     "dependencies": {
         "bcrypt": "^5.0.1",
         "busboy": "^0.3.1",
         "cors": "^2.8.5",
         "dotenv": "^10.0.0",
         "ejs": "^3.1.6",
-        "express": "^4.17.1",
+        "express": "^4.17.2",
         "express-session": "^1.17.2",
         "mongoose": "^5.12.15",
         "node-schedule": "^2.0.0",

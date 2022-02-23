@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { DOMAIN } = require('../../config');
 
 router.get('/admin/401', (req, res) => {
     req.logout();

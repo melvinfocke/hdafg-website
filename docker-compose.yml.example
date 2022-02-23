@@ -1,65 +1,27 @@
-version: '3.1'
+version: '3'
 
 services:
-    mongo:
-        image: mongo
-        restart: always
+  website:
+    build: .
+    container_name: hdafg-website
+    restart: always
+    ports:
+      - 5000:80
+    environment:
+      - TZ=Europe/Berlin
+      - DATABASE=mongodb://127.0.0.1/hdafg
+      - SECRET_FOR_SESSION=<VERY_LONG_RANDOM_STRING>
 
-    controller:
-        build: .
-        restart: always
-        volumes:
-            - /hdafg-uploads:/usr/src/app/uploads
-        environment:
-            - TZ=Europe/Berlin
-            - MODE=CONTROLLER
-            - ALL_CITIES=Ludwigsfelde{|:|}Das Hauptquartier der ab-strakten Freizeitgestaltung startete 2019 zeitgleich mit Philipp's Taverne und hat seinen Ursprung hier in Lud-wigsfelde.{|,|}Marburg{|:|}Das Hauptquartier der ab-strakten Freizeitgestaltung hat sich mittlerweile expan-diert und nun gibt es eine Außenstelle in Marburg.
-            - DOMAIN=hdafg.de
-        ports:
-            - 3001:8080
-        depends_on:
-            - mongo
+      - ALL_CITIES=Ludwigsfelde{|:|}Das Hauptquartier der ab-strakten Freizeitgestaltung startete 2019 zeitgleich mit Philipp's Taverne und hat seinen Ursprung hier in Lud-wigsfelde.{|,|}Marburg{|:|}Das Hauptquartier der ab-strakten Freizeitgestaltung hat sich mittlerweile expan-diert und nun gibt es eine Außenstelle in Marburg.
+      - MAIL_USER_LU=ludwigsfelde.noreply.hdafg
+      - MAIL_PASSWORD_LU=<SECURE_PASSWORD_FOR_LU>
+      - MAIL_USER_MA=marburg.noreply.hdafg
+      - MAIL_PASSWORD_MA=<SECURE_PASSWORD_FOR_MA>
+      - MAIL_TO=Melvin:melvin@gmail.com
+    volumes:
+      - /home/data/hdafg:/usr/src/app/uploads
 
-    node-ludwigsfelde:
-        build: .
-        restart: always
-        volumes:
-            - /hdafg-uploads:/usr/src/app/uploads
-        environment:
-            - TZ=Europe/Berlin
-            - CITY=Ludwigsfelde
-            - DOMAIN=hdafg.de
-            - MAIL_HOST=smtp.gmail.com
-            - MAIL_PORT=465
-            - MAIL_SECURE_CONNECTION=true
-            - MAIL_USER=ludwigsfelde.noreply.hdafg
-            - MAIL_PASSWORD=This_is_a_Password_123
-            - MAIL_TO=Melvin:melvin@gmail.com,Philipp:philipp@gmail.com
-            - MAIL_FROM=h.d.a.fg Ludwigsfelde <ludwigsfelde-noreply@hdafg.de>
-        ports:
-            - 3002:8080
-        depends_on:
-            - mongo
-            - controller
-
-    node-marburg:
-        build: .
-        restart: always
-        volumes:
-            - /hdafg-uploads:/usr/src/app/uploads
-        environment:
-            - TZ=Europe/Berlin
-            - CITY=Marburg
-            - DOMAIN=hdafg.de
-            - MAIL_HOST=smtp.gmail.com
-            - MAIL_PORT=465
-            - MAIL_SECURE_CONNECTION=true
-            - MAIL_USER=marburg.noreply.hdafg
-            - MAIL_PASSWORD=This_is_a_Password_123
-            - MAIL_TO=Melvin:melvin@gmail.com,Philipp:philipp@gmail.com
-            - MAIL_FROM=h.d.a.fg Marburg <marburg-noreply@hdafg.de>
-        ports:
-            - 3003:8080
-        depends_on:
-            - mongo
-            - controller
+networks:
+  default:
+    external: true
+    name: codingisnuts
