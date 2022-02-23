@@ -6,21 +6,20 @@ const nodemailer = require('nodemailer');
 const { ensureCanRegistrate } = require('../../functions/node/authentication');
 const { convertToDateAsString } = require('../../functions/date');
 
-const CITY = 'Marburg';
-
 // LOAD CONFIG
 const {
+    CITY,
     MAIL_HOST,
     MAIL_PORT,
     MAIL_SECURE_CONNECTION,
-    MAIL_USER_MA: MAIL_USER,
-    MAIL_PASSWORD_MA: MAIL_PASSWORD,
-    MAIL_FROM_MA: MAIL_FROM,
+    MAIL_USER,
+    MAIL_PASSWORD,
     MAIL_TO,
-    MAX_REGISTRATIONS_PER_DAY
+    MAX_REGISTRATIONS_PER_DAY,
+    MAIL_FROM
 } = require('../../config');
 
-router.get(`/${CITY.toLowerCase()}`, async (req, res) => {
+router.get('/', async (req, res) => {
     /* * DISPLAY EVENTS * */
     const eventArray = await Event.find({ isVisible: true, city: CITY });
     eventArray.sort((a, b) => {
@@ -31,7 +30,7 @@ router.get(`/${CITY.toLowerCase()}`, async (req, res) => {
     res.render('index', { city: CITY, upcomingEvents: eventArray, internalCss: getInternalCss(eventArray) });
 });
 
-router.post(`/${CITY.toLowerCase()}`, async (req, res) => {
+router.post('/', async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req?.connection?.remoteAddress;
 
     if ((await ensureCanRegistrate(ip)) == false) {
